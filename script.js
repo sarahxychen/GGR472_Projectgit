@@ -1,0 +1,52 @@
+/*--------------------------------------------------------------------
+GGR472 Group Project
+--------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------
+//Step 1: INITIALIZE MAP
+--------------------------------------------------------------------*/
+// Define access token
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYWh4eWNoZW4iLCJhIjoiY2xyZnB4c2h0MDhnMzJqcGpvZ2sxOHk4byJ9.yIz3cOJ6CJBeoUb3hvbBFA'; //****ADD YOUR PUBLIC ACCESS TOKEN*****
+
+// Initialize map and edit to your preference
+const map = new mapboxgl.Map({
+    container: 'map', // container id in HTML
+    style: 'mapbox://styles/sarahxychen/clskmpfs603tf01p25v25bs4j',  //change if we want
+    center: [-79.39, 43.65],  // starting point, longitude/latitude
+    zoom: 12 // starting zoom level
+});
+
+// Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl());
+
+/*--------------------------------------------------------------------
+//Step 2: VIEW GEOJSON POINT DATA ON MAP
+--------------------------------------------------------------------*/
+// let colgeojson;
+
+// // Fetch GeoJSON from URL and store response as JSON
+// fetch('https://raw.githubusercontent.com/sarahxychen/GGR472_Lab4git/main/data/pedcyc_collision_06-21.geojson') //UPDATE THIS AFTER PUBLISHING
+//     .then(response => response.json())
+//     .then(response => {
+//         console.log(response); //Check response in console
+//         colgeojson = response; // Store geojson as variable using URL from fetch response
+//     });
+
+// //View and style source data as geojson 
+// map.on('load', () => {
+//     map.addSource('pedbike_collision', {
+//         type: 'geojson',
+//         data: colgeojson
+//     });
+    
+//     map.addLayer({
+//         'id': 'collision_pts',
+//         'type': 'circle',
+//         'source': 'pedbike_collision',
+//         'paint': {
+//             'circle-radius': 4,
+//             'circle-color': '#010c1c'
+//         }
+//     });
+    
+// });
