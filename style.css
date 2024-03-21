@@ -71,7 +71,7 @@
 /* MAP STYLE FOR MAP 1- CHARLOTTE */
 
 /* position map container */
-.map {
+.timemap {
     position: absolute;
     top: 50;
     bottom: 50;
@@ -86,7 +86,7 @@
 /* MAP STYLE FOR MAP 2- SARAH */
 
 /* position map container */
-.map {
+.datamap {
   position: absolute;
   top: 50;
   bottom: 50;
