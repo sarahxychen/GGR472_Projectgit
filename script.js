@@ -27,15 +27,17 @@ function openTab(evt, cityName) {
 //Default Tab; Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
+
+
 /*--------------------------------------------------------------------
-//Step 1: INITIALIZE MAP
+//BIA MAP SECTION- CHARLOTTE
 --------------------------------------------------------------------*/
 // Define access token
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYWh4eWNoZW4iLCJhIjoiY2xyZnB4c2h0MDhnMzJqcGpvZ2sxOHk4byJ9.yIz3cOJ6CJBeoUb3hvbBFA'; //****ADD YOUR PUBLIC ACCESS TOKEN*****
 
-// Initialize map and edit to your preference
-const map = new mapboxgl.Map({
-    container: 'map', // container id in HTML
+// Initialize time map and edit to your preference
+const timemap = new mapboxgl.Map({
+    container: 'timemap', // container id in HTML
     style: 'mapbox://styles/sarahxychen/clskmpfs603tf01p25v25bs4j',  //change if we want
     center: [-79.39, 43.65],  // starting point, longitude/latitude
     zoom: 12 // starting zoom level
@@ -44,8 +46,41 @@ const map = new mapboxgl.Map({
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
 
+
+
+
+
+
 /*--------------------------------------------------------------------
-//Step 2: VIEW GEOJSON POINT DATA ON MAP
+//SOCIOECONOMIC MAP SECTION- SARAH
+--------------------------------------------------------------------*/
+
+// Initialize data map and edit to your preference
+const datamap = new mapboxgl.Map({
+  container: 'datamap', // container id in HTML
+  style: 'mapbox://styles/sarahxychen/clskmpfs603tf01p25v25bs4j',  //change if we want
+  center: [-79.39, 43.65],  // starting point, longitude/latitude
+  zoom: 12 // starting zoom level
+});
+
+// Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------------
+//VIEW GEOJSON POINT DATA ON MAP (copy paste to your section)
 --------------------------------------------------------------------*/
 // let colgeojson;
 
