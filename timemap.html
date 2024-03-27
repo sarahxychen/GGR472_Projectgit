@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIA Toronto</title>
+    <meta name="timemap" content="width=device-width, initial-scale=1.0">
+    <title>BIA Timeslider</title>
     <!-- mapbox API -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet' />
@@ -19,7 +19,7 @@
 </head>
 
 <body>
-<!-- Navbar theme -->
+   <!-- Navbar theme -->
 <nav class="navbar" style="background-color: #3355f068;">
     <!-- Navbar bootstrap; logo cover -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -42,18 +42,13 @@
             </div>
         </nav>
     </nav>
-
-
-    
-<!-- Tab content 1: Home --> <!-- Introductory page and context -->
-<!-- Main Body -->
     <div class="container">
-        <div><h1>Introduction</h1></div>
+        <div><h1>BIA Map</h1></div>
     </div>
+    <!-- MAP CONTAINER -->
+    <div id='timemap' class='container'></div>
 
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
