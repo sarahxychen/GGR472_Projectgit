@@ -34,19 +34,6 @@ GGR472 Group Project
 --------------------------------------------------------------------*/
 // Define access token
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYWh4eWNoZW4iLCJhIjoiY2xyZnB4c2h0MDhnMzJqcGpvZ2sxOHk4byJ9.yIz3cOJ6CJBeoUb3hvbBFA'; //****ADD YOUR PUBLIC ACCESS TOKEN*****
-
-// Initialize time map and edit to your preference
-const map1 = new mapboxgl.Map({
-    container: 'timemap', // container id in HTML
-    style: 'mapbox://styles/sarahxychen/clskmpfs603tf01p25v25bs4j',  //change if we want
-    center: [-79.39, 43.65],  // starting point, longitude/latitude
-    zoom: 12 // starting zoom level
-});
-
-// Add zoom and rotation controls to the map.
-map1.addControl(new mapboxgl.NavigationControl(), 'bottom-left');
-map1.addControl(new mapboxgl.FullscreenControl(), 'bottom-left');
-
 // map.addSource('biapoly', {
 // type: 'geojson',
 // data: '/Users/charlottekafkagibbons/Documents/GitHub/GGR472_Projectgit/Data/.Business-Improvement-Areas.geojson.icloud'
@@ -61,10 +48,6 @@ map1.addControl(new mapboxgl.FullscreenControl(), 'bottom-left');
 
 
 
-
-
-// Add zoom and rotation controls to the map.
-map2.addControl(new mapboxgl.NavigationControl());
 
 
 
