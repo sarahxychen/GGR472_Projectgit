@@ -61,17 +61,7 @@ map1.addControl(new mapboxgl.FullscreenControl(), 'bottom-left');
 
 
 
-/*--------------------------------------------------------------------
-//SOCIOECONOMIC MAP SECTION- SARAH
---------------------------------------------------------------------*/
 
-// Initialize data map and edit to your preference
-const map2 = new mapboxgl.Map({
-  container: 'datamap', // container id in HTML
-  style: 'mapbox://styles/sarahxychen/clskmpfs603tf01p25v25bs4j',  //change if we want
-  center: [-79.39, 43.65],  // starting point, longitude/latitude
-  zoom: 12 // starting zoom level
-});
 
 // Add zoom and rotation controls to the map.
 map2.addControl(new mapboxgl.NavigationControl());
