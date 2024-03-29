@@ -19,24 +19,27 @@
 </head>
 
 <body>
-<!-- Navbar theme -->
-<nav class="navbar" style="background-color: #3355f068;">
-    <!-- Navbar bootstrap; logo cover -->
+    <!-- Navbar theme -->
+    <nav class="navbar" style="background-color: #3355f068;">
+        <!-- Navbar bootstrap; logo cover -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/800px-Utoronto_coa.svg.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/800px-Utoronto_coa.svg.png"
+                        alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     Business Improvement Areas: Toronto
                 </a>
-    <!-- Navbar buttons -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"> 
-             <span class="navbar-toggler-icon"></span>
-             </button> 
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
-                    <div class="navbar-nav" style="background-color: #3355f068;"> 
-                        <a class="nav-link" aria-current="page" href="index.html" id="defaultOpen">Home</a> 
-                        <a class="nav-link" href="timemap.html" >BIA Map</a> 
-                        <a class="nav-link" href="datamap.html" >Socioeconomic Data</a>
+                <!-- Navbar buttons -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav" style="background-color: #3355f068;">
+                        <a class="nav-link" aria-current="page" href="index.html" id="defaultOpen">Home</a>
+                        <a class="nav-link" href="timemap.html">BIA Map</a>
+                        <a class="nav-link" href="datamap.html">Socioeconomic Data</a>
                     </div>
                 </div>
             </div>
@@ -44,16 +47,85 @@
     </nav>
 
 
-    
-<!-- Tab content 1: Home --> <!-- Introductory page and context -->
-<!-- Main Body -->
+
+    <!-- Tab content 1: Home --> <!-- Introductory page and context -->
+    <!-- Main Body -->
     <div class="container">
-        <div><h1>Introduction</h1></div>
+        <div>
+            <br>
+            <h1 class="text-center">Mission Statement</h1>
+            <br>
+        </div>
+        <div>
+            <h4 class="text-center"> Our web app centers a case study of Business Improvement Areas (BIAs) implemented
+                throughout the City of Toronto to explore how businesses and neighborhood residents reciprocally shape
+                each
+                other’s wellbeing. BIAs are created by commercial owners to promote business in a neighborhood by adding
+                a tax
+                levy that will fund city-led initiatives and programs. Toronto was the first in the world to implement
+                this
+                system in 1970 with the Bloor West Village BIA. Now, over 60,000 of these areas have been created in
+                municipalities across the globe (Charenko, 2015). At its core, the BIA system surrounds businesses
+                supporting businesses, with residential and non-commercial wellbeing of the neighborhood is an external
+                factor. We focus on a set of socioeconomic indicators to assess the impacts of a designated BIA on the
+                city’s commercial and residential metabolisms. This aims to assess the impacts of BIAs on the
+                neighbourhood at large, interrogating both the efficacy of the BIA to support businesses and whether
+                non-commercial residents are benefitted by these groups. </h4>
+            <br>
+            <h4 class="text-center"> Our app, BIAdvocate: Toronto, encapsulates an interaction with several map layers
+                to explore the creation and spread of the BIA program within Toronto’s CMA while accounting for the
+                socioeconomic impact it has on locals. This application explores the coexistence of private entities and
+                residents within the urban landscape, highlighting the tension in municipal support of commercial and
+                residential livelihoods. </h4>
+            <br>
+        </div>
+    </div>
+
+    <!--Three components cards-->
+    <br>
+    <h1 class="text-center">Site Components</h1>
+    <br>
+    <div class="card-group">
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">BIA and Neighbourhood Identifier</h5>
+                <p class="card-text">This tool encourages the user to explore the gradual implementation of BIAs in
+                    Toronto using an interactive time-slider. The map visualizes the area of Toronto’s existing
+                    neighbourhoods, as defined by the city, overlaid with the areas making up Toronto’s BIAs. Opening
+                    the collapsible window to the bottom-right, the demography of Toronto’s neighbourhoods can be
+                    analyzed and compared with the mission statements of the BIAs within each neighborhood, seen in the
+                    top right window. </p>
+                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Find a BIA</h5>
+                <p class="card-text">The Find a BIA page allows a user to either explore all BIAs by scrolling, or to
+                    search specific BIAs using the query bar at the top of the page. BIA header images redirect to the
+                    BIAs external website, for further information on a specific group. </p>
+                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Socioeconomic Variable Visualizer</h5>
+                <p class="card-text">TThis tool visualizes how income, employment, population, housing affordability,
+                    and housing standards fluctuate over time to assess the success of BIAs in encouraging economic
+                    growth and its impacts on local residents livelihoods. Layers can be toggled on and off to assess
+                    how trends change throughout the 21st century, and a search function is included to locate relavent
+                    BIA zones.</p>
+                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
     </div>
 
 
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
