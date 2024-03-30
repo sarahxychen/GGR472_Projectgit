@@ -86,7 +86,7 @@ map1.addControl(new mapboxgl.FullscreenControl(), 'bottom-left');
 map1.on('load', () => {
 map1.addSource('biapoly', {
     'type': 'geojson',
-    data: 'https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/Business-Improvement-Areas.geojson'
+    data: 'https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/BIAYearNum.geojson'
 });
 
 map1.addLayer({
@@ -98,9 +98,16 @@ map1.addLayer({
         'fill-opacity': 0.9,
         'fill-outline-color': 'blue',
     },
-    filter: ['==', ['string', ['get', 'YearCreated']],"2005-01-01"]
+    // filter: ['==', ['number', ['get', 'YearNum']], 2005]
 });
 });
+document.getElementById('slider').addEventListener('input', (event) => {
+    const year = parseInt(event.target.value);
+    // update the map
+    map1.setFilter('biapoly', ['<=', ['number', ['get', 'YearNum']], year]);
+    document.getElementById('active-year').innerText = year;
+});
+
 
 //Turning our date value into a number
 const datetonum =Date.parse("2005-01-01");
