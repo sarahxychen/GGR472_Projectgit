@@ -19,7 +19,7 @@
 </head>
 
 <body>
-  <!-- Navbar theme -->
+<!-- Navbar theme -->
 <nav class="navbar" style="background-color: #3355f068;">
     <!-- Navbar bootstrap; logo cover -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -42,14 +42,31 @@
             </div>
         </nav>
     </nav>
-    <!-- Tab content 3: Find BIA's or additional info tab or whtv -->
-    <div class="container">
-        <h1>Socioeconomic Data Map</h1>
+
+<!-- Title of page -->
+<div class="container">
+    <h1>Socioeconomic Data Map</h1>
+</div>
+    
+<!-- MAP CONTAINER -->
+<div>
+     <div id='datamap' class='container'></div>
+    
+    <!-- Map load event handler  -->
+    <div class='map-data-container'>
+        <label><h2>Filter Map View</h2></label>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="cmhc_data" checked>
+            Show Housing Data
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="census_data" checked>
+            Show Census Data
+        </div>
     </div>
-    <div>
-            <!-- MAP CONTAINER -->
-        <div id='datamap' class='container'></div>
-    </div>
+    
+</div>
 
     <script src="datamap.js"></script>
 </body>
