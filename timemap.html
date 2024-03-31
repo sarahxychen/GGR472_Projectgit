@@ -21,32 +21,37 @@
 </head>
 
 <body>
-   <!-- Navbar theme -->
-<nav class="navbar" style="background-color: #3355f068;">
-    <!-- Navbar bootstrap; logo cover -->
+    <!-- Navbar theme -->
+    <nav class="navbar" style="background-color: #3355f068;">
+        <!-- Navbar bootstrap; logo cover -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/800px-Utoronto_coa.svg.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/800px-Utoronto_coa.svg.png"
+                        alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     Business Improvement Areas: Toronto
                 </a>
-    <!-- Navbar buttons -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"> 
-             <span class="navbar-toggler-icon"></span>
-             </button> 
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
-                    <div class="navbar-nav" style="background-color: #3355f068;"> 
-                        <a class="nav-link" aria-current="page" href="index.html" id="defaultOpen">Home</a> 
-                        <a class="nav-link" href="timemap.html" >BIA Map</a> 
-                        <a class="nav-link" href="datamap.html" >Socioeconomic Data</a>
-                        <a class="nav-link" href="biacards.html" >Find a BIA</a>
+                <!-- Navbar buttons -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav" style="background-color: #3355f068;">
+                        <a class="nav-link" aria-current="page" href="index.html" id="defaultOpen">Home</a>
+                        <a class="nav-link" href="timemap.html">BIA Map</a>
+                        <a class="nav-link" href="datamap.html">Socioeconomic Data</a>
+                        <a class="nav-link" href="biacards.html">Find a BIA</a>
                     </div>
                 </div>
             </div>
         </nav>
     </nav>
     <div class="container">
-        <div><h1>BIA Map</h1></div>
+        <div>
+            <h1>BIA Map</h1>
+        </div>
     </div>
     <!-- MAP CONTAINER -->
     <div id='timemap' class='container'></div>
@@ -65,8 +70,8 @@
         <div class='session' id='sliderbar'>
             <h2>Year: <label id='active-year'>1969</label></h2>
             <input id='slider' class='row' type='range' min='1969' max='2021' step='1' value='1969' />
-          </div>
-      </div>
+        </div>
+    </div>
 
     <script src="timemap.js"></script>
 </body>
