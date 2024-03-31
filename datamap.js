@@ -146,3 +146,57 @@ map2.on('load', () => {
              e.target.checked ? 'visible' : 'none'
         );
     });
+
+//View and classify variable layers
+
+    //2001 Income 
+
+    //2016 Income
+
+    //2016 Income
+
+    //2001 Emplyment
+
+    //2016 Employment
+
+    //2021 Employment
+
+    //2001 Pop
+
+    //2016 Pop
+
+    //2021 Pop
+
+/*--------------------------------------------------------------------
+//Add dynamic legends for each layer (Week 8)
+--------------------------------------------------------------------*/
+    
+    //2006 Housing Standard (Housing_st)
+
+    //2011 Housing Standard (Housing__1)
+
+    //2016 Housing Standard (Housing__2)
+
+    //2006 Property Value (Value_dwel)
+
+    //2011 Property Value (Value_dw_1)
+
+    //2016 Property Value (Value_dw_2)
+
+    //2001 Income 
+
+    //2016 Income
+
+    //2016 Income
+
+    //2001 Emplyment
+
+    //2016 Employment
+
+    //2021 Employment
+
+    //2001 Pop
+
+    //2016 Pop
+
+    //2021 Pop
