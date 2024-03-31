@@ -25,7 +25,7 @@ map2.addControl(new mapboxgl.FullscreenControl());
 let cmhcgeojson;
 
 // Fetch GeoJSON from URL and store response as JSON
-fetch('https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/CHMC_combined.geojson')
+fetch('https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/CHMC_datav2.geojson')
     .then(response => response.json())
     .then(response => {
         console.log(response); //Check response in console
@@ -52,30 +52,30 @@ map2.on('load', () => {
 
     //2006 Housing Standard (Housing_st)
 
-    map2.addLayer({
-        'id': '2006_housingst',
-        'type': 'fill',
-        'source': 'cmhc_data',
-        'paint': {
+//     map2.addLayer({
+//         'id': '2006_housingst',
+//         'type': 'fill',
+//         'source': 'cmhc_data',
+//         'paint': {
 
-    // refer to legend in experience builder to classify each layer
-    //         'circle-radius': [
-    //             'interpolate', //INTERPOLATE expression produces continuous results by interpolating between value pairs
-    //             ['linear'], //linear interpolation between stops but could be exponential ['exponential', base] where base controls rate at which output increases
-    //             ['zoom'], //zoom expression changes appearance with zoom level
-    //             10, 7, // when zoom is 10 (or less), radius will be 7px
-    //             12, 5 // when zoom is 12 (or greater), radius will 5px
-    //        ],
-    //    'circle-color': [
-    //        'step', // STEP expression produces stepped results based on value pairs //Classify biking points based on type of bike parking capacity in column: Bicycle_capacity to display ramp colour on points
-    //        ['get', 'BICYCLE_CAPACITY'], // GET expression retrieves property value from 'capacity' data field
-    //        '#f07dcf', // Colour assigned to any values < first step (so 0-9)
-    //        10, '#d10496', // Colours assigned to values >= each step (10-19)
-    //        20, '#d9027c', // >=(20-29)
-    //        30, '#9c0259', // >=(30-119)
-    //        120, '#52022f', // >=(120)
-        }
-    });
+//     // refer to legend in experience builder to classify each layer
+//     //         'circle-radius': [
+//     //             'interpolate', //INTERPOLATE expression produces continuous results by interpolating between value pairs
+//     //             ['linear'], //linear interpolation between stops but could be exponential ['exponential', base] where base controls rate at which output increases
+//     //             ['zoom'], //zoom expression changes appearance with zoom level
+//     //             10, 7, // when zoom is 10 (or less), radius will be 7px
+//     //             12, 5 // when zoom is 12 (or greater), radius will 5px
+//     //        ],
+//     //    'circle-color': [
+//     //        'step', // STEP expression produces stepped results based on value pairs //Classify biking points based on type of bike parking capacity in column: Bicycle_capacity to display ramp colour on points
+//     //        ['get', 'BICYCLE_CAPACITY'], // GET expression retrieves property value from 'capacity' data field
+//     //        '#f07dcf', // Colour assigned to any values < first step (so 0-9)
+//     //        10, '#d10496', // Colours assigned to values >= each step (10-19)
+//     //        20, '#d9027c', // >=(20-29)
+//     //        30, '#9c0259', // >=(30-119)
+//     //        120, '#52022f', // >=(120)
+//         }
+//     });
     
 });
 
@@ -127,7 +127,7 @@ map2.on('load', () => {
     
 });
 
- //Add toggle feature for each layer
+//Add toggle feature for each layer
 
 //Change housing layer display based on check box using setLayoutProperty method
     document.getElementById('cmhc_data').addEventListener('change', (e) => {
@@ -146,4 +146,3 @@ map2.on('load', () => {
              e.target.checked ? 'visible' : 'none'
         );
     });
-
