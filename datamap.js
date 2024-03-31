@@ -50,15 +50,13 @@ map2.on('load', () => {
         }
     });
 
-    //2006 Housing Standard (Housing_st)
+//2006 Housing Standard (Housing_st) (Lecture 6 to classify ramp colouring)
 
 //     map2.addLayer({
 //         'id': '2006_housingst',
 //         'type': 'fill',
 //         'source': 'cmhc_data',
 //         'paint': {
-
-//     // refer to legend in experience builder to classify each layer
 //     //         'circle-radius': [
 //     //             'interpolate', //INTERPOLATE expression produces continuous results by interpolating between value pairs
 //     //             ['linear'], //linear interpolation between stops but could be exponential ['exponential', base] where base controls rate at which output increases
@@ -66,7 +64,7 @@ map2.on('load', () => {
 //     //             10, 7, // when zoom is 10 (or less), radius will be 7px
 //     //             12, 5 // when zoom is 12 (or greater), radius will 5px
 //     //        ],
-//     //    'circle-color': [
+//     //        'circle-color': [
 //     //        'step', // STEP expression produces stepped results based on value pairs //Classify biking points based on type of bike parking capacity in column: Bicycle_capacity to display ramp colour on points
 //     //        ['get', 'BICYCLE_CAPACITY'], // GET expression retrieves property value from 'capacity' data field
 //     //        '#f07dcf', // Colour assigned to any values < first step (so 0-9)
