@@ -52,28 +52,24 @@ map2.on('load', () => {
 
 //2006 Housing Standard (Housing_st) (Lecture 6 to classify ramp colouring)
 
-//     map2.addLayer({
-//         'id': '2006_housingst',
-//         'type': 'fill',
-//         'source': 'cmhc_data',
-//         'paint': {
-//     //         'circle-radius': [
-//     //             'interpolate', //INTERPOLATE expression produces continuous results by interpolating between value pairs
-//     //             ['linear'], //linear interpolation between stops but could be exponential ['exponential', base] where base controls rate at which output increases
-//     //             ['zoom'], //zoom expression changes appearance with zoom level
-//     //             10, 7, // when zoom is 10 (or less), radius will be 7px
-//     //             12, 5 // when zoom is 12 (or greater), radius will 5px
-//     //        ],
-//     //        'circle-color': [
-//     //        'step', // STEP expression produces stepped results based on value pairs //Classify biking points based on type of bike parking capacity in column: Bicycle_capacity to display ramp colour on points
-//     //        ['get', 'BICYCLE_CAPACITY'], // GET expression retrieves property value from 'capacity' data field
-//     //        '#f07dcf', // Colour assigned to any values < first step (so 0-9)
-//     //        10, '#d10496', // Colours assigned to values >= each step (10-19)
-//     //        20, '#d9027c', // >=(20-29)
-//     //        30, '#9c0259', // >=(30-119)
-//     //        120, '#52022f', // >=(120)
-//         }
-//     });
+    map2.addLayer({
+        'id': '2006_housingst',
+        'type': 'fill',
+        'source': 'cmhc_data',
+        'paint': {
+           'fill-color': [
+                'step', // STEP expression produces stepped results based on value pairs //Classify biking points based on type of bike parking capacity in column: Bicycle_capacity to display ramp colour on points
+                ['get', 'Housing_st'], // GET expression retrieves property value from 'capacity' data field
+                '#edf8fb', // Colour assigned to any values < first step (so 0-0.1)
+                0.1, '#b3cde3', // Colours assigned to values >= each step (0.1-17.2)
+                17.2, '#8c96c6', // >=(17.2-24.8)
+                24.8, '#8856a7', // >=(24.8-31.5)
+                31.5, '#810f7c', // >=((31.5-46.3)
+                ],
+            'fill-opacity': 0.8, //Opacity set to 0.8 to see and interact with layers underneath still
+            'fill-outline-color': 'black'
+        },
+    });
     
 });
 
@@ -135,6 +131,15 @@ map2.on('load', () => {
              e.target.checked ? 'visible' : 'none'
          );
     });
+
+//Toggle Housing Standard 2006
+document.getElementById('2006_housingst').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2006_housingst',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
 
 //Change census layer display based on check box using setLayoutProperty method
     document.getElementById('census_data').addEventListener('change', (e) => {
