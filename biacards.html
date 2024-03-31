@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="datamap" content="width=device-width, initial-scale=1.0">
-    <title>Socioeconomic Data</title>
+    <title>Find a BIA</title>
     <!-- mapbox API -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet' />
@@ -16,36 +16,154 @@
     <!-- Bootstrap: Navbar <link rel="stylesheet" href="style.css"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--to create a loop for BIA cards-->
 </head>
 
 <body>
-  <!-- Navbar theme -->
-<nav class="navbar" style="background-color: #3355f068;">
-    <!-- Navbar bootstrap; logo cover -->
+    <!-- Navbar theme -->
+    <nav class="navbar" style="background-color: #3355f068;">
+        <!-- Navbar bootstrap; logo cover -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/800px-Utoronto_coa.svg.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/800px-Utoronto_coa.svg.png"
+                        alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     Business Improvement Areas: Toronto
                 </a>
-    <!-- Navbar buttons -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"> 
-             <span class="navbar-toggler-icon"></span>
-             </button> 
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
-                    <div class="navbar-nav" style="background-color: #3355f068;"> 
-                        <a class="nav-link" aria-current="page" href="index.html" id="defaultOpen">Home</a> 
-                        <a class="nav-link" href="timemap.html" >BIA Map</a> 
-                        <a class="nav-link" href="datamap.html" >Socioeconomic Data</a>
-                        <a class="nav-link" href="biacards.html" >Find a BIA</a>
+                <!-- Navbar buttons -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav" style="background-color: #3355f068;">
+                        <a class="nav-link" aria-current="page" href="index.html" id="defaultOpen">Home</a>
+                        <a class="nav-link" href="timemap.html">BIA Map</a>
+                        <a class="nav-link" href="datamap.html">Socioeconomic Data</a>
+                        <a class="nav-link" href="biacards.html">Find a BIA</a>
                     </div>
                 </div>
             </div>
         </nav>
     </nav>
     <!-- Tab content 3: Find BIA's or additional info tab or whtv -->
+    <br>
+    <br>
+    <h1 class="text-center">Find a BIA</h1>
+    <br>
+    <form class="d-flex">
+        <input class="form-control me-2" id="myInput" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    <br>
+    <br>
     <div class="container">
-        <h1>Find a BIA</h1>
+        <div class="card-group">
+            <div class="card">
+                <img src="https://www.toronto-bia.com/wp-content/uploads/2018/04/52-west-queen-west.png"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">West Queen West</h5>
+                    <p class="card-text">West Queen West is the creative heart of Toronto. Home to an eclectic mix of
+                        over 300 galleries, design houses, unique shops, restaurants and boutique hotels, the West Queen
+                        West Art + Design District is the city’s centre of artistic innovation. Running along the two
+                        kilometer strip that runs between Bathurst Street and Gladstone Avenue, the area is the
+                        destination of choice for tourists and Torontonians alike. </p>
+                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://www.toronto-bia.com/wp-content/uploads/2018/04/09-mount-dennis.png"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Mount Dennis</h5>
+                    <p class="card-text">The Mount Dennis BIA is located along Weston Rd., running north between
+                        Eglinton Avenue West and Ray Avenue. It’s just west of Black Creek Drive, East of Jane Street,
+                        and minutes from the 401/400 highways. Mount Dennis offers an exotic array of eclectic
+                        restaurants, cafes, shopping and services, with plentiful parking. Mount Dennis is easily
+                        accessible via 24-hour public transportation. Mount Dennis BIA was originally established in
+                        1974 and today its growing community offers tremendous business opportunities. Mount Dennis is
+                        home to a surprising mix of hills and dales located on one of the highest topographical plains
+                        in the City of Toronto. It is surrounded by ravine and parkland and is bordered on the west by
+                        the Humber River and on the east by Black Creek. </p>
+                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://www.toronto-bia.com/wp-content/uploads/2018/04/19-forest-hill-village.png"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Forest Hill Village</h5>
+                    <p class="card-text">Renowned for its delectable cuisine, available in an assortment of restaurants,
+                        food shops and bakeries, this cozy village-within-the-city, which was granted BIA status in
+                        1979, is nestled along Spadina Road north of St. Clair Avenue. Here you’ll also discover a
+                        variety of intriguing specialty shops featuring fashion trends, fine art, books, children’s
+                        wear, kitchenware, hair care, spa treats, coffee, games, gifts and sweets. You’ll also
+                        appreciate the friendly personalized service that is a proud tradition among Forest Hill Village
+                        BIA merchants.</p>
+                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card-group">
+                <div class="card">
+                    <img src="https://www.toronto-bia.com/wp-content/uploads/2018/04/Screenshot-105.png"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Uptown Yonge</h5>
+                        <p class="card-text">Created in 2005, the Uptown Yonge BIA is a popular main street shopping and
+                            dining destination. Located in the heart of the City’s historic North Toronto neighbourhood,
+                            Uptown Yonge is an eclectic mix of fine dining and local pubs, specialty foods and kitchen
+                            wares, international retailers and local designers, and necessities for the sports
+                            enthusiast.
+                            Conveniently accessible from downtown and out-of-town, Uptown Yonge has something for
+                            everyone.
+                        </p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://www.toronto-bia.com/wp-content/uploads/2018/04/35-cabbagetown.png"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Cabbagetown</h5>
+                        <p class="card-text">Nestled between Wellesley St and Shuter St, and bound by Sherbourne St on
+                            the
+                            West and the Don River on the East, Cabbagetown embodies a unique blend of historic charm
+                            and
+                            modern vibrancy. Renowned for its picturesque streets adorned with the largest area of
+                            preserved
+                            Victorian homes in North America, this community exudes an inviting ambiance that beckons
+                            exploration. Beyond its architectural wonders, Cabbagetown thrives with an eclectic mix of
+                            businesses that add to its allure. Local shops, cozy cafes, and delectable eateries line the
+                            streets, offering a rich tapestry of experiences to residents and visitors alike. The
+                            neighborhood’s dynamic atmosphere seamlessly intertwines with its historical roots, creating
+                            a
+                            distinct character that captivates anyone who wanders its streets.  </p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://www.toronto-bia.com/wp-content/uploads/2018/04/02-lakeshore-village.png"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Lakeshore Village</h5>
+                        <p class="card-text">The Lakeshore Village BIA is located on Lakeshore Blvd. W from Dwight Ave.
+                            to
+                            Twelfth Street. With over a hundred and fifty businesses our three thousand local households
+                            can
+                            satisfy 90% of their shopping needs without leaving the neighbourhood. With an assortment of
+                            new
+                            and established businesses we boast restaurants, bakeries and top notch services. The BIA is
+                            located just blocks from the lake making this community a perfect place to work, live and
+                            visit.
+                        </p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="biacards.js"></script>
