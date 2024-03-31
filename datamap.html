@@ -53,18 +53,29 @@
 <div>
      <div id='datamap' class='container'></div>
     
-    <!-- Map load event handler  -->
+    <!-- Map load event handler; Toggling dat alayers on and off  -->
     <div class='map-data-container'>
-        <label><h2>Filter Map View</h2></label>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="cmhc_data" checked>
-            Show Housing Data
-        </div>
+    <label><h2>Filter Map View</h2></label>
+    <!-- Housing standard variables -->
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="2006_housingst" checked>
             2006: Households in Need
         </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="2011_housingst" checked>
+            2011: Households in Need
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="2016_housingst" checked>
+            2016: Households in Need
+        </div>
 
+    <!-- Non-variable layers -->
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="cmhc_data" checked>
+            Show Housing Data
+        </div>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="census_data" checked>
             Show Census Data

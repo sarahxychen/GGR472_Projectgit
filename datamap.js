@@ -50,7 +50,9 @@ map2.on('load', () => {
         }
     });
 
-//2006 Housing Standard (Housing_st) (Lecture 6 to classify ramp colouring)
+//View and classify variable layers (Lecture 6 to classify ramp colouring)
+
+    //2006 Housing Standard (Housing_st) 
 
     map2.addLayer({
         'id': '2006_housingst',
@@ -58,28 +60,59 @@ map2.on('load', () => {
         'source': 'cmhc_data',
         'paint': {
            'fill-color': [
-                'step', // STEP expression produces stepped results based on value pairs //Classify biking points based on type of bike parking capacity in column: Bicycle_capacity to display ramp colour on points
-                ['get', 'Housing_st'], // GET expression retrieves property value from 'capacity' data field
+                'step', // STEP expression produces stepped results based on value pairs
+                ['get', 'Housing_st'], // GET expression retrieves property value from 'Housing_st' data field
                 '#edf8fb', // Colour assigned to any values < first step (so 0-0.1)
                 0.1, '#b3cde3', // Colours assigned to values >= each step (0.1-17.2)
                 17.2, '#8c96c6', // >=(17.2-24.8)
                 24.8, '#8856a7', // >=(24.8-31.5)
                 31.5, '#810f7c', // >=((31.5-46.3)
                 ],
-            'fill-opacity': 0.8, //Opacity set to 0.8 to see and interact with layers underneath still
-            'fill-outline-color': 'black'
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2011 Housing Standard (Total_)
+
+    map2.addLayer({
+        'id': '2011_housingst',
+        'type': 'fill',
+        'source': 'cmhc_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Total_'], 
+                '#edf8fb', // Colour assigned to any values < first step (so 0-0.1)
+                0.1, '#b3cde3', // (0.1-13.1)
+                13.1, '#8c96c6', // (13.1-20.3)
+                20.3, '#8856a7', // (20.3-27.6)
+                27.6, '#810f7c', // >=(27.6-45.0)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2016 Housing Standard (Housing__2)
+
+    map2.addLayer({
+        'id': '2016_housingst',
+        'type': 'fill',
+        'source': 'cmhc_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Housing__2'], 
+                '#edf8fb', // Colour assigned to any values < first step (so 0-4.9)
+                4.9, '#b3cde3', // (4.9-17.3)
+                17.3, '#8c96c6', // (17.3-24.5)
+                24.5, '#8856a7', // (24.5-31.8)
+                31.8, '#810f7c', // >=(31.8-47.3)
+                ],
+            'fill-outline-color': 'grey'
         },
     });
     
 });
-
-//View and classify variable layers
-
-    //2006 Housing Standard (Housing_st)
-
-    //2011 Housing Standard (Housing__1)
-
-    //2016 Housing Standard (Housing__2)
 
     //2006 Property Value (Value_dwel)
 
@@ -123,19 +156,37 @@ map2.on('load', () => {
 
 //Add toggle feature for each layer
 
-//Change housing layer display based on check box using setLayoutProperty method
-    document.getElementById('cmhc_data').addEventListener('change', (e) => {
-        map2.setLayoutProperty(
-            'cmhc_data',
-            'visibility',
-             e.target.checked ? 'visible' : 'none'
-         );
-    });
-
 //Toggle Housing Standard 2006
 document.getElementById('2006_housingst').addEventListener('change', (e) => {
     map2.setLayoutProperty(
         '2006_housingst',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Housing Standard 2011
+document.getElementById('2011_housingst').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2011_housingst',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Housing Standard 2016
+document.getElementById('2016_housingst').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2016_housingst',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Change housing layer display based on check box using setLayoutProperty method
+document.getElementById('cmhc_data').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        'cmhc_data',
         'visibility',
          e.target.checked ? 'visible' : 'none'
      );
