@@ -84,22 +84,22 @@ map1.addControl(new mapboxgl.FullscreenControl(), 'bottom-left');
 //     }
 
 map1.on('load', () => {
-map1.addSource('biapoly', {
-    'type': 'geojson',
-    data: 'https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/BIAYearNum.geojson'
-});
+    map1.addSource('biapoly', {
+        'type': 'geojson',
+        data: 'https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/BIAYearNum.geojson'
+    });
 
-map1.addLayer({
-    'id': 'biapoly',
-    'type': 'fill',
-    'source': 'biapoly',
-    'paint': {
-        'fill-color': 'grey',
-        'fill-opacity': 0.9,
-        'fill-outline-color': 'blue',
-    },
-    // filter: ['==', ['number', ['get', 'YearNum']], 2005]
-});
+    map1.addLayer({
+        'id': 'biapoly',
+        'type': 'fill',
+        'source': 'biapoly',
+        'paint': {
+            'fill-color': 'grey',
+            'fill-opacity': 0.9,
+            'fill-outline-color': 'blue',
+        },
+        // filter: ['==', ['number', ['get', 'YearNum']], 2005]
+    });
 });
 document.getElementById('slider').addEventListener('input', (event) => {
     const year = parseInt(event.target.value);
@@ -108,21 +108,28 @@ document.getElementById('slider').addEventListener('input', (event) => {
     document.getElementById('active-year').innerText = year;
 });
 
+// When a click event occurs on a feature in the states layer,
+// open a popup at the location of the click, with description
+// HTML from the click event's properties.
+map1.on('click', 'biapoly', (e) => {
+    new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(e.features[0].properties.Description)
+        .addTo(map1);
+});
 
-//Turning our date value into a number
-const datetonum =Date.parse("2005-01-01");
-console.log(datetonum);
+// Change the cursor to a pointer when
+// the mouse is over the states layer.
+map1.on('mouseenter', 'biapoly', () => {
+    map1.getCanvas().style.cursor = 'pointer';
+});
 
+// Change the cursor back to a pointer
+// when it leaves the BIA polygon layer.
+map1.on('mouseleave', 'biapoly', () => {
+    map1.getCanvas().style.cursor = '';
+});
 
-    //     // Set filter to first year a BIA was created
-    //     // 0 = 1969
-    //     filterBy(0);
-
-    //     document.getElementById('slider').addEventListener('input', (e) => {
-    //         const years = parseInt(e.target.value, 10);
-    //         filterBy(year);
-    //     });
-    // }
 
 
 
