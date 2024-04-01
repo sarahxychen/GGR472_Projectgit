@@ -224,8 +224,61 @@ document.getElementById('cmhc_data').addEventListener('change', (e) => {
 /*--------------------------------------------------------------------
 //Add dynamic legends for each layer (Week 8)
 --------------------------------------------------------------------*/
+//2006 Housing Standard (Housing_st)
+
+//Declare array variables for labels and colours
+const legendlabels = [
+    '0-0.1',
+    '0.1-17.2',
+    '17.2-24.8',
+    '24.8-31.5',
+    '31.5-46.3'
+];
+
+const legendcolours = [
+    '#edf8fb',
+    '#b3cde3',
+    '#8c96c6',
+    '#8856a7',
+    '#810f7c'
+];
+
+//Declare legend variable using legend div tag
+const legend = document.getElementById('legend');
+
+//For each layer create a block to put the colour and label in
+legendlabels.forEach((label, i) => {
+    const colour = legendcolours[i];
+
+    const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
+    const key = document.createElement('span'); //add a 'key' to the row. A key will be the colour circle
+
+    key.className = 'legend-key'; //the key will take on the shape and style properties defined in css
+    key.style.backgroundColor = colour; // the background color is retreived from teh layers array
+
+    const value = document.createElement('span'); //add a value variable to the 'row' in the legend
+    value.innerHTML = `${label}`; //give the value variable text based on the label
+
+    item.appendChild(key); //add the key (colour cirlce) to the legend row
+    item.appendChild(value); //add the value to the legend row
+
+    legend.appendChild(item); //add row to the legend
+});
+
+//Change display of legend based on check box
+let legendcheck = document.getElementById('legendcheck');
+
+legendcheck.addEventListener('click', () => {
+    if (legendcheck.checked) {
+        legendcheck.checked = true;
+        legend.style.display = 'block';
+    }
+    else {
+        legend.style.display = "none";
+        legendcheck.checked = false;
+    }
+});
     
-    //2006 Housing Standard (Housing_st)
 
     //2011 Housing Standard (Housing__1)
 
