@@ -222,7 +222,7 @@ document.getElementById('cmhc_data').addEventListener('change', (e) => {
     //2021 Pop
 
 /*--------------------------------------------------------------------
-//Add dynamic legends for each layer (Week 8)
+//Add dynamic legends for each layer (Week 8 demo 2)
 --------------------------------------------------------------------*/
 //2006 Housing Standard (Housing_st)
 
