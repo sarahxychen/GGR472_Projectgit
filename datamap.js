@@ -547,6 +547,76 @@ map2.on('load', () => {
             'fill-outline-color': 'grey'
         },
     });
+
+//Population data classification
+
+    //2001 Population (Pop01)
+
+    map2.addLayer({
+        'id': '2001_pop',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Pop01'], 
+                '#ffffd4', //Colour assigned to any values < first step (so 0-216)
+                216, '#fed98e', // (216-535)
+                535, '#fe9929', // (535-828)
+                828, '#d95f0e', // (828-1428)
+                1428, '#993404', // >=(1428-3099)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2016 Population (Pop16)
+
+    map2.addLayer({
+        'id': '2016_pop',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Pop16'], 
+                '#ffffd4', //Colour assigned to any values < first step (so 0-649)
+                649, '#fed98e', // (649-1228)
+                1228, '#fe9929', // (1228-2297)
+                2297, '#d95f0e', // (2297-4631)
+                4631, '#993404', // >=(4631-7939)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2021 Population (Pop21)
+
+    map2.addLayer({
+        'id': '2021_pop',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Pop21'], 
+                '#ffffd4', //Colour assigned to any values < first step (so 0-747)
+                748, '#fed98e', // (748-1438)
+                1439, '#fe9929', // (1439-2662)
+                2663, '#d95f0e', // (2663-5506)
+                5507, '#993404', // >=(5507-9625)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+//Employment data classification
+
+    //2001 Emplyment
+
+    //2016 Employment
+
+    //2021 Employment
     
 });
 
@@ -693,32 +763,147 @@ legendcheck3.addEventListener('click', () => {
 /*--------------------------------------------------------------------
 //Population: 2001-2021 tab
 --------------------------------------------------------------------*/
-//Step 1: View and classify variable layers 
-
-    //2001 Pop
-
-    //2016 Pop
-
-    //2021 Pop
+//Step 1: View and classify variable layers (see insert Census data section)
 
 // Step 2: Add toggle feature for each layer (make smoother to interactive later)
 
-// Step 3: Add Housing Property Value Legend (with all 3 years)
+//Toggle Pop 2001 (starts on- check to turn off)
+document.getElementById('2001_pop').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2001_pop',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Pop 2016
+document.getElementById('2016_pop').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2016_pop',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Pop 2021
+document.getElementById('2021_pop').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2021_pop',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+// Step 3: Add Population Legend (with all 3 years)
+
+//Declare array variables for labels and colours
+const legendlabels_2001pop = [
+    '2001:',
+    '0-216',
+    '216-535',
+    '535-828',
+    '828-1428',
+    '1428-3099',
+];
+
+const legendlabels_2016pop = [
+    '2016:',
+    '0-649',
+    '649-1228',
+    '1228-2297',
+    '2297-4631',
+    '4631-7939'
+];
+
+const legendlabels_2021pop = [
+    '2021:',
+    '0-747',
+    '748-1438',
+    '1439-2662',
+    '2663-5506',
+    '5507-9625'
+];
+
+const legendcolourspop = [
+    'rgba(255, 255, 255, 0.8)',
+    '#ffffd4',
+    '#fed98e',
+    '#fe9929',
+    '#d95f0e',
+    '#993404'
+];
+
+//For each layer create a block to put the colour and label in- 2001
+legendlabels_2001pop.forEach((label_2001pop, i) => {
+    const colour = legendcolourspop[i];
+
+    const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
+    const key = document.createElement('span'); //add a 'key' to the row. A key will be the colour circle
+
+    key.className = 'legend-keypop'; //the key will take on the shape and style properties defined in css
+    key.style.backgroundColor = colour; // the background color is retreived from teh layers array
+
+    const value = document.createElement('span'); //add a value variable to the 'row' in the legend
+    value.innerHTML = `${label_2001pop}`; //give the value variable text based on the label
+
+    item.appendChild(key); //add the key (colour cirlce) to the legend row
+    item.appendChild(value); //add the value to the legend row
+
+    legendpop.appendChild(item); //add row to the legend
+});
+
+//2016 block- colour and label 
+legendlabels_2016pop.forEach((label_2016pop, i) => {
+    const colour = legendcolourspop[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-keypop'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2016pop}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendpop.appendChild(item); 
+});
+
+//2021 block- colour and label 
+legendlabels_2021pop.forEach((label_2021pop, i) => {
+    const colour = legendcolourspop[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-keypop'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2021pop}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendpop.appendChild(item); 
+});
 
 //Step 4: Toggle display of legend
 
-//View and classify variable layers
+let legendcheck4 = document.getElementById('legendcheck4');
+
+legendcheck4.addEventListener('click', () => {
+    if (legendcheck4.checked) {
+        legendcheck4.checked = true;
+        legendpop.style.display = 'block';
+    }
+    else {
+        legendpop.style.display = "none";
+        legendcheck4.checked = false;
+    }
+});
+
 
 /*--------------------------------------------------------------------
 //Employment: 2001-2021 tab
 --------------------------------------------------------------------*/
-//Step 1: View and classify variable layers 
-
-    //2001 Emplyment
-
-    //2016 Employment
-
-    //2021 Employment
+//Step 1: View and classify variable layers (See insert Census layer section)
 
 // Step 2: Add toggle feature for each layer (make smoother to interactive later)
 
