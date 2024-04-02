@@ -9,8 +9,8 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYWh4eWNoZW4iLCJhIjoiY2xyZnB4c2h0MDhnMzJqc
 const map2 = new mapboxgl.Map({
     container: 'datamap', // container id in HTML
     style: 'mapbox://styles/sarahxychen/clskmpfs603tf01p25v25bs4j',  //change if we want
-    center: [-79.39, 43.65],  // starting point, longitude/latitude
-    zoom: 12 // starting zoom level
+    center: [-79.36, 43.715],  // starting point, longitude/latitude
+    zoom: 10.45 // starting zoom level
   });
 
 // Add zoom and full screen controls to the map.
