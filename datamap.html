@@ -49,22 +49,22 @@
     <h1>Socioeconomic Data Map</h1>
 </div>
 
-<!-- Housing standard variables map container- to toggle data layers 2006-2016 and legend -->
+<!-- Housing standard variables map container- to toggle data layers 2006-2016 and legend; WORK TO REARRANGE LAYERS MORE SMOOTHLY -->
 <div id='datamap' class='container'></div>
    <div class='map-data-container'>
        <label><h3>Total Households in Core Housing Need (%)</h3></label>
    
-   <!-- Housing standard variables -->
+   <!-- Housing standard variables --> 
        <div class="form-check">
            <input class="form-check-input" type="checkbox" value="" id="2006_housingst" checked>
            2006
        </div>
        <div class="form-check">
-           <input class="form-check-input" type="checkbox" value="" id="2011_housingst">
+           <input class="form-check-input" type="checkbox" value="" id="2011_housingst" checked>
            2011
        </div>
        <div class="form-check">
-           <input class="form-check-input" type="checkbox" value="" id="2016_housingst">
+           <input class="form-check-input" type="checkbox" value="" id="2016_housingst" checked>
            2016
        </div>
 
@@ -85,7 +85,7 @@
         </div> -->
 </div>
 
-<!-- LEGEND -->
+<!-- Housing standards Legend -->
 <div id='legend' class='legend'>
    <h4>Households in Need (%)</h4>
    <!-- Conents of legend will now be added here-->
@@ -95,6 +95,13 @@
     <h4>2016</h4> -->
     <!-- Conents of legend will be added here via JS-->
 </div>
+
+<!-- Collapse map container using bootstrap button-->
+<button type="button" class="collapsible">Housing Suitability Data</button>
+<div class="content">
+  <p>Lorem ipsum...</p>
+</div>
+
 
     <script src="datamap.js"></script>
 </body>
