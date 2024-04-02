@@ -19,7 +19,7 @@ map2.addControl(new mapboxgl.FullscreenControl());
 
 
 /*--------------------------------------------------------------------
-//View GeoJSON data on map as interactive layer: CMHC Data
+//Load CMHC data onto map as GeoJSON
 --------------------------------------------------------------------*/
 
 let cmhcgeojson;
@@ -39,7 +39,8 @@ map2.on('load', () => {
         data: cmhcgeojson
     });
     
-    // map2.addLayer({
+    //(TEST ADD WHOLE CMHC LAYER TO VIEW)
+    // map2.addLayer({ 
     //     'id': 'cmhc_data',
     //     'type': 'fill',
     //     'source': 'cmhc_data',
@@ -49,6 +50,10 @@ map2.on('load', () => {
     //       'fill-outline-color': 'blue'
     //     }
     // });
+
+/*--------------------------------------------------------------------
+//Housing Suitability: 2006-2016 tab
+--------------------------------------------------------------------*/
 
 //View and classify variable layers (Lecture 6 to classify ramp colouring)
 
@@ -114,12 +119,6 @@ map2.on('load', () => {
     
 });
 
-    //2006 Property Value (Value_dwel)
-
-    //2011 Property Value (Value_dw_1)
-
-    //2016 Property Value (Value_dw_2)
-
 //Toggle map container layers as button
 var coll = document.getElementsByClassName("collapsible");
 var i;
@@ -136,7 +135,7 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-//Add toggle feature for each layer
+//Add toggle feature for each layer (make smoother to interactive later)
 
 //Toggle Housing Standard 2006 (starts on- check to turn off)
 document.getElementById('2006_housingst').addEventListener('change', (e) => {
@@ -165,82 +164,7 @@ document.getElementById('2016_housingst').addEventListener('change', (e) => {
      );
 });
 
-/*--------------------------------------------------------------------
-//View GeoJSON data on map as interactive layer: Census data
---------------------------------------------------------------------*/
-
-let censusgeojson;
-
-// Fetch GeoJSON from URL and store response as JSON
-fetch('https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/CensusData.geojson')
-    .then(response => response.json())
-    .then(response => {
-        console.log(response); //Check response in console
-        censusgeojson = response; // Store geojson as variable using URL from fetch response
-    });
-
-//View and style source data as geojson 
-map2.on('load', () => {
-    map2.addSource('census_data', {
-        type: 'geojson',
-        data: censusgeojson
-    });
-    
-    // map2.addLayer({
-    //     'id': 'census_data',
-    //     'type': 'fill',
-    //     'source': 'census_data',
-    //     'paint': {
-    //       'fill-color': 'blue',
-    //       'fill-opacity': 0.4,
-    //       'fill-outline-color': 'blue'
-    //     }
-    // });
-    
-});
-
-// //Change housing layer display based on check box using setLayoutProperty method
-// document.getElementById('cmhc_data').addEventListener('change', (e) => {
-//     map2.setLayoutProperty(
-//         'cmhc_data',
-//         'visibility',
-//          e.target.checked ? 'visible' : 'none'
-//      );
-// });
-
-// //Change census layer display based on check box using setLayoutProperty method
-//     document.getElementById('census_data').addEventListener('change', (e) => {
-//         map2.setLayoutProperty(
-//             'census_data',
-//             'visibility',
-//              e.target.checked ? 'visible' : 'none'
-//         );
-//     });
-
-//View and classify variable layers
-
-    //2001 Income 
-
-    //2016 Income
-
-    //2016 Income
-
-    //2001 Emplyment
-
-    //2016 Employment
-
-    //2021 Employment
-
-    //2001 Pop
-
-    //2016 Pop
-
-    //2021 Pop
-
-/*--------------------------------------------------------------------
-//Add dynamic legends for each layer (Week 8 demo 2)
---------------------------------------------------------------------*/
-// Housing Standard legend (with all 3 years)
+// Housing Standard legend (with all 3 years) 
 
 //Declare array variables for labels and colours
 const legendlabels_2006 = [
@@ -346,60 +270,53 @@ legendcheck.addEventListener('click', () => {
         legendcheck.checked = false;
     }
 });
-    
 
-// //2006 Housing Standard (Housing_st)
-
-
-// //Declare array variables for labels and colours
-// const legendlabels = [
-//     '0-0.1',
-//     '0.1-17.2',
-//     '17.2-24.8',
-//     '24.8-31.5',
-//     '31.5-46.3'
-// ];
-
-// const legendcolours = [
-//     '#edf8fb',
-//     '#b3cde3',
-//     '#8c96c6',
-//     '#8856a7',
-//     '#810f7c'
-// ];
-
-// //Declare legend variable using legend div tag
-// const legend = document.getElementById('legend');
-
-// //For each layer create a block to put the colour and label in
-// legendlabels.forEach((label, i) => {
-//     const colour = legendcolours[i];
-
-//     const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
-//     const key = document.createElement('span'); //add a 'key' to the row. A key will be the colour circle
-
-//     key.className = 'legend-key'; //the key will take on the shape and style properties defined in css
-//     key.style.backgroundColor = colour; // the background color is retreived from teh layers array
-
-//     const value = document.createElement('span'); //add a value variable to the 'row' in the legend
-//     value.innerHTML = `${label}`; //give the value variable text based on the label
-
-//     item.appendChild(key); //add the key (colour cirlce) to the legend row
-//     item.appendChild(value); //add the value to the legend row
-
-//     legend.appendChild(item); //add row to the legend
-// });
-
-
-    //2011 Housing Standard (Housing__1)
-
-    //2016 Housing Standard (Housing__2)
+/*--------------------------------------------------------------------
+//Housing Value: 2006-2016 tab
+--------------------------------------------------------------------*/
 
     //2006 Property Value (Value_dwel)
 
     //2011 Property Value (Value_dw_1)
 
     //2016 Property Value (Value_dw_2)
+
+/*--------------------------------------------------------------------
+//Load Census data onto map as GeoJSON
+--------------------------------------------------------------------*/
+
+let censusgeojson;
+
+// Fetch GeoJSON from URL and store response as JSON
+fetch('https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/CensusData.geojson')
+    .then(response => response.json())
+    .then(response => {
+        console.log(response); //Check response in console
+        censusgeojson = response; // Store geojson as variable using URL from fetch response
+    });
+
+//View and style source data as geojson 
+map2.on('load', () => {
+    map2.addSource('census_data', {
+        type: 'geojson',
+        data: censusgeojson
+    });
+    
+    //TEST: Add census layer entirely onto map
+    // map2.addLayer({
+    //     'id': 'census_data',
+    //     'type': 'fill',
+    //     'source': 'census_data',
+    //     'paint': {
+    //       'fill-color': 'blue',
+    //       'fill-opacity': 0.4,
+    //       'fill-outline-color': 'blue'
+    //     }
+    // });
+    
+});
+
+//View and classify variable layers
 
     //2001 Income 
 
@@ -418,3 +335,22 @@ legendcheck.addEventListener('click', () => {
     //2016 Pop
 
     //2021 Pop
+
+//TEST: Change visibility of entire CMHC and census layers
+//Change housing layer display based on check box using setLayoutProperty method
+// document.getElementById('cmhc_data').addEventListener('change', (e) => {
+//     map2.setLayoutProperty(
+//         'cmhc_data',
+//         'visibility',
+//          e.target.checked ? 'visible' : 'none'
+//      );
+// });
+
+// //Change census layer display based on check box using setLayoutProperty method
+//     document.getElementById('census_data').addEventListener('change', (e) => {
+//         map2.setLayoutProperty(
+//             'census_data',
+//             'visibility',
+//              e.target.checked ? 'visible' : 'none'
+//         );
+//     });
