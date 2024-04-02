@@ -612,11 +612,65 @@ map2.on('load', () => {
 
 //Employment data classification
 
-    //2001 Emplyment
+    //2001 Emplyment (Emp01)
 
-    //2016 Employment
+    map2.addLayer({
+        'id': '2001_emp',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Emp01'], 
+                '#f1eef6', //Colour assigned to any values < first step (so 0-1)
+                1, '#bdc9e1', // (1-460)
+                461, '#74a9cf', // (461-715)
+                716, '#2b8cbe', // (716-1345)
+                1346, '#045a8d', // >=(1346-2555)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2016 Employment (Emp16)
+
+    map2.addLayer({
+        'id': '2016_emp',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Emp16'], 
+                '#f1eef6', //Colour assigned to any values < first step (so 0-20)
+                21, '#bdc9e1', // (21-47)
+                48, '#74a9cf', // (48-58)
+                59, '#2b8cbe', // (59-68)
+                69, '#045a8d', // >=(69-92)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
 
     //2021 Employment
+
+    map2.addLayer({
+        'id': '2021_emp',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Emp21'], 
+                '#f1eef6', //Colour assigned to any values < first step (so 0-30)
+                31, '#bdc9e1', // (31-46)
+                47, '#74a9cf', // (	47-55)
+                56, '#2b8cbe', // (56-65)
+                66, '#045a8d', // >=(66-85)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
     
 });
 
@@ -907,7 +961,133 @@ legendcheck4.addEventListener('click', () => {
 
 // Step 2: Add toggle feature for each layer (make smoother to interactive later)
 
-// Step 3: Add Housing Property Value Legend (with all 3 years)
+//Toggle Employment 2001 (starts on- check to turn off)
+document.getElementById('2001_emp').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2001_emp',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Emp 2016
+document.getElementById('2016_emp').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2016_emp',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Emp 2021
+document.getElementById('2021_emp').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2021_emp',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+// Step 3: Add Employment Legend (with all 3 years)
+
+const legendlabels_2001emp = [
+    '2001:',
+    '0-1',
+    '1-460',
+    '461-715',
+    '716-1345',
+    '1346-2555',
+];
+
+const legendlabels_2016emp = [
+    '2016:',
+    '0-20',
+    '21-47',
+    '48-58',
+    '59-68',
+    '69-92'
+];
+
+const legendlabels_2021emp = [
+    '2021:',
+    '0-30',
+    '31-46',
+    '47-55',
+    '56-65',
+    '66-85'
+];
+
+const legendcoloursemp = [
+    'rgba(255, 255, 255, 0.8)',
+    '#f1eef6',
+    '#bdc9e1',
+    '#74a9cf',
+    '#2b8cbe',
+    '#045a8d'
+];
+
+//For each layer create a block to put the colour and label in- 2001
+legendlabels_2001emp.forEach((label_2001emp, i) => {
+    const colour = legendcoloursemp[i];
+
+    const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
+    const key = document.createElement('span'); //add a 'key' to the row. A key will be the colour circle
+
+    key.className = 'legend-keyemp'; //the key will take on the shape and style properties defined in css
+    key.style.backgroundColor = colour; // the background color is retreived from teh layers array
+
+    const value = document.createElement('span'); //add a value variable to the 'row' in the legend
+    value.innerHTML = `${label_2001emp}`; //give the value variable text based on the label
+
+    item.appendChild(key); //add the key (colour cirlce) to the legend row
+    item.appendChild(value); //add the value to the legend row
+
+    legendemp.appendChild(item); //add row to the legend
+});
+
+//2016 block- colour and label 
+legendlabels_2016emp.forEach((label_2016emp, i) => {
+    const colour = legendcoloursemp[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-keyemp'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2016emp}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendemp.appendChild(item); 
+});
+
+//2021 block- colour and label 
+legendlabels_2021emp.forEach((label_2021emp, i) => {
+    const colour = legendcoloursemp[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-keyemp'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2021emp}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendemp.appendChild(item); 
+});
 
 //Step 4: Toggle display of legend
-    
+
+let legendcheck5 = document.getElementById('legendcheck5');
+
+legendcheck5.addEventListener('click', () => {
+    if (legendcheck5.checked) {
+        legendcheck5.checked = true;
+        legendemp.style.display = 'block';
+    }
+    else {
+        legendemp.style.display = "none";
+        legendcheck5.checked = false;
+    }
+});
