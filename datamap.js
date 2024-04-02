@@ -38,7 +38,7 @@ for (i = 0; i < coll.length; i++) {
 }
 
 /*--------------------------------------------------------------------
-//Load CMHC data onto map as GeoJSON
+//Load CMHC data onto map as GeoJSON + classify layer visualizations
 --------------------------------------------------------------------*/
 
 let cmhcgeojson;
@@ -57,24 +57,8 @@ map2.on('load', () => {
         type: 'geojson',
         data: cmhcgeojson
     });
-    
-    //(TEST ADD WHOLE CMHC LAYER TO VIEW)
-    // map2.addLayer({ 
-    //     'id': 'cmhc_data',
-    //     'type': 'fill',
-    //     'source': 'cmhc_data',
-    //     'paint': {
-    //       'fill-color': 'grey',
-    //       'fill-opacity': 0.4,
-    //       'fill-outline-color': 'blue'
-    //     }
-    // });
 
-/*--------------------------------------------------------------------
-//Housing Suitability: 2006-2016 tab
---------------------------------------------------------------------*/
-
-//Step 1: View and classify variable layers (Lecture 6 to classify ramp colouring)
+//Housing Suitability classification: 
 
     //2006 Housing Standard (Housing_st) 
 
@@ -135,10 +119,78 @@ map2.on('load', () => {
             'fill-outline-color': 'grey'
         },
     });
+
+//Housing Value classification: 
+
+    //2006 Property Value (Value_dwel)
+
+    map2.addLayer({
+        'id': '2006_housingval',
+        'type': 'fill',
+        'source': 'cmhc_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Value_dwel'], 
+                '#edf8fb', // Colour assigned to any values < first step (so 0-2757)
+                2757, '#b2e2e2', // (2757-361068)
+                361068, '#66c2a4', // (361068-551676)
+                551676, '#2ca25f', // (551676-850786)
+                850786, '#006d2c', // >=(850786-1243163)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2011 Property Value (Value_dw_1)
+
+    map2.addLayer({
+        'id': '2011_housingval',
+        'type': 'fill',
+        'source': 'cmhc_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Value_dw_1'], 
+                '#edf8fb', // Colour assigned to any values < first step (so 0-3183)
+                3183, '#b2e2e2', // (3183-422056)
+                422056, '#66c2a4', // (422056-587261)
+                587261, '#2ca25f', // (587261-851317)
+                851317, '#006d2c', // >=(851317-1435459)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2016 Property Value (Total1)
+
+    map2.addLayer({
+        'id': '2016_housingval',
+        'type': 'fill',
+        'source': 'cmhc_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Total1'], 
+                '#edf8fb', // Colour assigned to any values < first step (so 0-4895)
+                4895, '#b2e2e2', // (4895-609025)
+                609025, '#66c2a4', // (609025-799149)
+                799149, '#2ca25f', // (799149-1164596)
+                1164596, '#006d2c', // >=(1164596-2207725)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
     
 });
 
-//Step 2: Add toggle feature for each layer (make smoother to interactive later) (REDO SO LAYERS START OFF THEN TOGGLE TO TURN ON LIKE LEGEND)
+/*--------------------------------------------------------------------
+//Housing Suitability: 2006-2016 tab
+--------------------------------------------------------------------*/
+
+//Step 1: View and classify variable layers (see load CMHC data section)
+
+//Step 2: Add toggle feature for each layer (REDO SO LAYERS START OFF THEN TOGGLE TO TURN ON LIKE LEGEND AND CAN REARRANGE LAYERS)
 
 //Toggle Housing Standard 2006 (starts on- check to turn off)
 document.getElementById('2006_housingst').addEventListener('change', (e) => {
@@ -277,19 +329,141 @@ legendcheck.addEventListener('click', () => {
 /*--------------------------------------------------------------------
 //Housing Value: 2006-2016 tab
 --------------------------------------------------------------------*/
-//Step 1: View and classify variable layers 
+//Step 1: View and classify variable layers (see loading CMHC layer section)
 
-     //2006 Property Value (Value_dwel)
+// Step 2: Add toggle feature for each layer (REDO SO LAYERS START OFF THEN TOGGLE TO TURN ON LIKE LEGEND AND CAN REARRANGE LAYERS) (OR HAVE ONE LAYER ON AT A TIME)
 
-    //2011 Property Value (Value_dw_1)
+//Toggle Housing Standard 2006 (starts on- check to turn off)
+document.getElementById('2006_housingval').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2006_housingval',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
 
-    //2016 Property Value (Value_dw_2)
+//Toggle Housing Standard 2011 
+document.getElementById('2011_housingval').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2011_housingval',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
 
-// Step 2: Add toggle feature for each layer (make smoother to interactive later)
+//Toggle Housing Standard 2016
+document.getElementById('2016_housingval').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2016_housingval',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
 
 // Step 3: Add Housing Property Value Legend (with all 3 years)
 
+//Declare array variables for labels and colours
+const legendlabels_2006val = [
+    '2006:',
+    '0-2757',
+    '2757-361,068',
+    '361,068-551,676',
+    '551,676-850,786',
+    '850,786-1,243,163'
+];
+
+const legendlabels_2011val = [
+    '2011:',
+    '0-3183',
+    '3183-422,056',
+    '422,056-587,261',
+    '587,261-851,317',
+    '851,317-1,435,459'
+];
+
+const legendlabels_2016val = [
+    '2016:',
+    '0-4895',
+    '4895-609,025',
+    '609,025-799,149',
+    '799,149-1,164,596',
+    '1,164,596-2,207,725'
+];
+
+const legendcoloursval = [
+    'rgba(255, 255, 255, 0.8)',
+    '#edf8fb',
+    '#b2e2e2',
+    '#66c2a4',
+    '#2ca25f',
+    '#006d2c'
+];
+
+//For each layer create a block to put the colour and label in- 2006
+legendlabels_2006val.forEach((label_2006val, i) => {
+    const colour = legendcoloursval[i];
+
+    const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
+    const key = document.createElement('span'); //add a 'key' to the row. A key will be the colour circle
+
+    key.className = 'legend-keyval'; //the key will take on the shape and style properties defined in css
+    key.style.backgroundColor = colour; // the background color is retreived from teh layers array
+
+    const value = document.createElement('span'); //add a value variable to the 'row' in the legend
+    value.innerHTML = `${label_2006val}`; //give the value variable text based on the label
+
+    item.appendChild(key); //add the key (colour cirlce) to the legend row
+    item.appendChild(value); //add the value to the legend row
+
+    legendval.appendChild(item); //add row to the legend
+});
+
+//2011 block- colour and label 
+legendlabels_2011val.forEach((label_2011val, i) => {
+    const colour = legendcoloursval[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-key'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2011val}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendval.appendChild(item); 
+});
+
+//2016 block- colour and label 
+legendlabels_2016val.forEach((label_2016val, i) => {
+    const colour = legendcoloursval[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-key'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2016val}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendval.appendChild(item); 
+});
+
 //Step 4: Toggle display of legend
+
+let legendcheck2 = document.getElementById('legendcheck2');
+
+legendcheck2.addEventListener('click', () => {
+    if (legendcheck2.checked) {
+        legendcheck2.checked = true;
+        legendval.style.display = 'block';
+    }
+    else {
+        legendval.style.display = "none";
+        legendcheck2.checked = false;
+    }
+});
 
 /*--------------------------------------------------------------------
 //Load Census data onto map as GeoJSON
@@ -381,25 +555,3 @@ map2.on('load', () => {
 
 //Step 4: Toggle display of legend
     
-
-
-
-
-//TEST: Change visibility of entire CMHC and census layers
-//Change housing layer display based on check box using setLayoutProperty method
-// document.getElementById('cmhc_data').addEventListener('change', (e) => {
-//     map2.setLayoutProperty(
-//         'cmhc_data',
-//         'visibility',
-//          e.target.checked ? 'visible' : 'none'
-//      );
-// });
-
-// //Change census layer display based on check box using setLayoutProperty method
-//     document.getElementById('census_data').addEventListener('change', (e) => {
-//         map2.setLayoutProperty(
-//             'census_data',
-//             'visibility',
-//              e.target.checked ? 'visible' : 'none'
-//         );
-//     });
