@@ -148,10 +148,10 @@
 }
 
 /* style and position layer toggle container */
-.map-data-container {
+/* .map-data-container {
   position: absolute;
   font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  color: #042757; /*font colour*/
+  color: #042757;
   background: rgba(255, 255, 255, 0.8);
   width: 260px;
   top: 20;
@@ -159,7 +159,7 @@
   margin-top: 30px;
   padding: 10px;
   overflow: visible;
-}
+} */
 
 /* HOUSING STANDARD TOGGLE BUTTON */
 

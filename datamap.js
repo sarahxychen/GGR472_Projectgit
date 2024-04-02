@@ -120,6 +120,22 @@ map2.on('load', () => {
 
     //2016 Property Value (Value_dw_2)
 
+//Toggle map container layers as button
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+
 //Add toggle feature for each layer
 
 //Toggle Housing Standard 2006 (starts on- check to turn off)
@@ -148,22 +164,6 @@ document.getElementById('2016_housingst').addEventListener('change', (e) => {
          e.target.checked ? 'visible' : 'none'
      );
 });
-
-//Toggle map container layers as button
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    }
-  });
-}
 
 /*--------------------------------------------------------------------
 //View GeoJSON data on map as interactive layer: Census data

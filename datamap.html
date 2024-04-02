@@ -45,17 +45,43 @@
     </nav>
 
 <!-- Title of page -->
-<div class="container">
-    <h1>Socioeconomic Data Map</h1>
+<div class="container"> <h1>Socioeconomic Data Map</h1></div>
+<div id='datamap' class='container'></div>
+
+<!-- Collapse map container using bootstrap button-->
+<button type="button" class="collapsible">Housing Suitability Data</button>
+<div class="content">
+    <label><h3>Total Households in <br> Core Housing Need (%)</h3></label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2006_housingst" checked>
+        2006
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2011_housingst" checked>
+        2011
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2016_housingst" checked>
+        2016
+    </div>
+    <div class="form-check">
+         <input class="form-check-input" type="checkbox" value="" id="legendcheck">
+         Show Legend
+     </div> 
 </div>
 
+<!-- Housing standards Legend --> <!-- Conents of legend will be added via JS-->
+<div id='legend' class='legend'>
+    <h4>Households in Need (%)</h4>
+    <!-- FIX LABELLING OF YEARS IN EACH LEGEND TO DIFFERENT FONT IN HTML RATHER THAN AS VARIABLE LABEL IN JS -->
+ </div>
+
 <!-- Housing standard variables map container- to toggle data layers 2006-2016 and legend; WORK TO REARRANGE LAYERS MORE SMOOTHLY -->
-<div id='datamap' class='container'></div>
-   <div class='map-data-container'>
+   <!-- <div class='map-data-container'>
        <label><h3>Total Households in Core Housing Need (%)</h3></label>
-   
+    -->
    <!-- Housing standard variables --> 
-       <div class="form-check">
+       <!-- <div class="form-check">
            <input class="form-check-input" type="checkbox" value="" id="2006_housingst" checked>
            2006
        </div>
@@ -66,13 +92,13 @@
        <div class="form-check">
            <input class="form-check-input" type="checkbox" value="" id="2016_housingst" checked>
            2016
-       </div>
+       </div> -->
 
        <!-- Legend check for variable -->
-       <div class="form-check">
+       <!-- <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="legendcheck">
             Show Legend
-        </div> 
+        </div>  -->
 
         <!-- Non-variable layers (TEST) -->
         <!-- <div class="form-check">
@@ -83,25 +109,7 @@
             <input class="form-check-input" type="checkbox" value="" id="census_data" checked>
             Show Census Data
         </div> -->
-</div>
-
-<!-- Housing standards Legend -->
-<div id='legend' class='legend'>
-   <h4>Households in Need (%)</h4>
-   <!-- Conents of legend will now be added here-->
-   <!-- FIX LABELLING OF YEARS IN EACH LEGEND TO DIFFERENT FONT iN HTML RATHER THAN AS VARIABLE LABEL IN JS -->
-    <!-- <h4>2006</h4>
-    <h4>2011</h4>
-    <h4>2016</h4> -->
-    <!-- Conents of legend will be added here via JS-->
-</div>
-
-<!-- Collapse map container using bootstrap button-->
-<button type="button" class="collapsible">Housing Suitability Data</button>
-<div class="content">
-  <p>Lorem ipsum...</p>
-</div>
-
+<!-- </div> -->
 
     <script src="datamap.js"></script>
 </body>
