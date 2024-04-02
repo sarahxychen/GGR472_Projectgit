@@ -128,7 +128,7 @@
   margin-top: 10px;
 }
 
-/* data map dynamic legend in JS */
+/* Housing Suitability Legend */
 .legend {
   position: absolute;
   display: none;
@@ -155,18 +155,72 @@
   margin-right: 5px; /*position of circle*/
 }
 
-/* style and position layer toggle container */
-.map-data-container {
+/* Housing Value Legend */
+.legendval {
   position: absolute;
-  font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  color: #042757; /*font colour*/
-  background: rgba(255, 255, 255, 0.8);
-  width: 260px;
-  top: 20;
-  left: 60px;
-  margin-top: 30px;
+  display: none;
+  background-color: #fff;
+  border-radius: 3px;
+  bottom: 0;
+  margin-bottom: 70px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /*horizontal shadow, vertical shadow, size of shadow, color*/
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   padding: 10px;
-  overflow: visible;
+  right: 30px;
+  z-index: 1;
+}
+
+.legendval h4 {
+  margin: 0 0 10px;
+}
+
+.legend-keyval {
+  display: inline-block;
+  border-radius: 50%; /*curve border to make a circle*/
+  height: 10px; /*size of circle*/
+  width: 10px;
+  margin-right: 5px; /*position of circle*/
+}
+
+/* Styling and positioning 5 DATA SET LAYER TOGGLE BUTTONS */
+
+/* collapse housing standard map container as button */
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 260px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.collapsible:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
 
 /* END OF DATA MAP */

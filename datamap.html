@@ -45,58 +45,168 @@
     </nav>
 
 <!-- Title of page -->
-<div class="container">
-    <h1>Socioeconomic Data Map</h1>
+<div class="container"> <h1>Socioeconomic Data Map</h1></div>
+<div id='datamap' class='container'></div>
+
+<!-- ADDING IN 5 BUTTONS FOR EACH DATA LAYER SET -->
+
+<!-- Housing standard: Collapsable button--> 
+    <!-- ADD ALL DATA AS UNCHECKED: So non visible -> visible with first button click-->
+<button type="button" class="collapsible">Housing Suitability Data</button>
+<div class="content">
+    <label><h5>Total Households in <br> Core Housing Need (%)</h5></label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2006_housingst" checked>
+        2006
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2011_housingst" checked>
+        2011
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2016_housingst" checked>
+        2016
+    </div>
+    <div class="form-check">
+         <input class="form-check-input" type="checkbox" value="" id="legendcheck">
+         Show Legend
+     </div> 
 </div>
-    
-<!-- MAP CONTAINER -->
-<div>
-     <div id='datamap' class='container'></div>
-    
-    <!-- Map load event handler; Toggling data layers on and off  -->
-    <div class='map-data-container'>
-        <label><h2>Filter Map View</h2></label>
-    
-    <!-- Housing standard variables -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="2006_housingst" checked>
-            2006: Households in Need
-        </div>
 
-        <!-- Legend check for variable -->
-        <div class="form-check">
+<!-- Housing value: Collapsable button-->
+<button type="button" class="collapsible">Property Value Data</button>
+<div class="content">
+    <label><h5>Total Property <br> Value ($)</h5></label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2006_housingval" checked>
+        2006
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2011_housingval" checked>
+        2011
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2016_housingval" checked>
+        2016
+    </div>
+    <div class="form-check">
+         <input class="form-check-input" type="checkbox" value="" id="legendcheck2">
+         Show Legend
+     </div> 
+</div>
+
+<!-- Income: Collapsable button-->
+<button type="button" class="collapsible">Income Data</button>
+<div class="content">
+    <label><h5>Income by <br> Dissemination Block ($)</h5></label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2001_income" checked>
+        2001
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2016_income" checked>
+        2016
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2021_income" checked>
+        2021
+    </div>
+    <div class="form-check">
+         <input class="form-check-input" type="checkbox" value="" id="legendcheck3">
+         Show Legend
+     </div> 
+</div>
+
+<!-- Population: Collapsable button-->
+<button type="button" class="collapsible">Population Data</button>
+<div class="content">
+    <label><h5>Population Count by <br> Dissemination Block</h5></label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2001_pop" checked>
+        2001
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2016_pop" checked>
+        2016
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2021_pop" checked>
+        2021
+    </div>
+    <div class="form-check">
+         <input class="form-check-input" type="checkbox" value="" id="legendcheck4">
+         Show Legend
+     </div> 
+</div>
+
+<!-- Employment Rate: Collapsable button-->
+<button type="button" class="collapsible">Employment Rate Data</button>
+<div class="content">
+    <label><h5>Employment Rate by <br> Dissemination Block (%)</h5></label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2001_emp" checked>
+        2001
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2016_emp" checked>
+        2016
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2021_emp" checked>
+        2021
+    </div>
+    <div class="form-check">
+         <input class="form-check-input" type="checkbox" value="" id="legendcheck5">
+         Show Legend
+     </div> 
+</div>
+
+<!-- ADDING IN 5 LEGENDS FOR EACH DATA SET-->
+
+<!-- Housing standards Legend --> <!-- Conents of legend will be added via JS--> <!-- FIX LABELLING OF YEARS IN EACH LEGEND TO DIFFERENT FONT IN HTML RATHER THAN AS VARIABLE LABEL IN JS -->
+<div id='legend' class='legend'>
+    <h4>Households in Need (%)</h4>
+ </div>
+
+ <!-- Housing Value Legend --> <!-- Conents of legend will be added via JS-->
+<div id='legendval' class='legendval'>
+    <h4>Households in Need (%)</h4>
+ </div>
+
+<!-- Housing standard variables map container- OLD -->
+   <!-- <div class='map-data-container'>
+       <label><h3>Total Households in Core Housing Need (%)</h3></label>
+    -->
+   <!-- Housing standard variables --> 
+       <!-- <div class="form-check">
+           <input class="form-check-input" type="checkbox" value="" id="2006_housingst" checked>
+           2006
+       </div>
+       <div class="form-check">
+           <input class="form-check-input" type="checkbox" value="" id="2011_housingst" checked>
+           2011
+       </div>
+       <div class="form-check">
+           <input class="form-check-input" type="checkbox" value="" id="2016_housingst" checked>
+           2016
+       </div> -->
+
+       <!-- Legend check for variable -->
+       <!-- <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="legendcheck">
-            Legend: 2006 Households in Need
-        </div>
+            Show Legend
+        </div>  -->
 
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="2011_housingst" checked>
-            2011: Households in Need
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="2016_housingst" checked>
-            2016: Households in Need
-        </div>
-
-    <!-- Non-variable layers -->
-
-        <div class="form-check">
+        <!-- Non-variable layers (TEST) -->
+        <!-- <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="cmhc_data" checked>
             Show Housing Data
         </div>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="census_data" checked>
             Show Census Data
-        </div>
-    </div>
-
-<!-- LEGEND -->
-<div id='legend' class='legend'>
-    <h4>Socioeconomic Variables</h4> <br>
-    <h4>Households in Need (%)</h4>
-    <!-- Conents of legend will now be added here-->
-    <!-- 1 Legend per variable/year (15)? 1 legend for one variable and all years (5)? 1 legend for each year and all variables (5)? 1 legend for all variables/years (Hard to format)? -->
-</div>
+        </div> -->
+<!-- </div> -->
 
     <script src="datamap.js"></script>
 </body>

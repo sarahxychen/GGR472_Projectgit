@@ -9,17 +9,36 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYWh4eWNoZW4iLCJhIjoiY2xyZnB4c2h0MDhnMzJqc
 const map2 = new mapboxgl.Map({
     container: 'datamap', // container id in HTML
     style: 'mapbox://styles/sarahxychen/clskmpfs603tf01p25v25bs4j',  //change if we want
-    center: [-79.39, 43.65],  // starting point, longitude/latitude
-    zoom: 12 // starting zoom level
+    center: [-79.36, 43.715],  // starting point, longitude/latitude
+    zoom: 10.45 // starting zoom level
   });
 
 // Add zoom and full screen controls to the map.
 map2.addControl(new mapboxgl.NavigationControl());
 map2.addControl(new mapboxgl.FullscreenControl());
 
+/*--------------------------------------------------------------------
+//Data set layer buttton interactivit
+--------------------------------------------------------------------*/
+
+//Toggle map container layers as button (APPLIES TO ALL 5 DATA SET LAYERS)
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
 
 /*--------------------------------------------------------------------
-//View GeoJSON data on map as interactive layer: CMHC Data
+//Load CMHC data onto map as GeoJSON + classify layer visualizations
 --------------------------------------------------------------------*/
 
 let cmhcgeojson;
@@ -38,19 +57,8 @@ map2.on('load', () => {
         type: 'geojson',
         data: cmhcgeojson
     });
-    
-    map2.addLayer({
-        'id': 'cmhc_data',
-        'type': 'fill',
-        'source': 'cmhc_data',
-        'paint': {
-          'fill-color': 'grey',
-          'fill-opacity': 0.4,
-          'fill-outline-color': 'blue'
-        }
-    });
 
-//View and classify variable layers (Lecture 6 to classify ramp colouring)
+//Housing Suitability classification: 
 
     //2006 Housing Standard (Housing_st) 
 
@@ -111,17 +119,354 @@ map2.on('load', () => {
             'fill-outline-color': 'grey'
         },
     });
-    
-});
+
+//Housing Value classification: 
 
     //2006 Property Value (Value_dwel)
 
+    map2.addLayer({
+        'id': '2006_housingval',
+        'type': 'fill',
+        'source': 'cmhc_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Value_dwel'], 
+                '#edf8fb', // Colour assigned to any values < first step (so 0-2757)
+                2757, '#b2e2e2', // (2757-361068)
+                361068, '#66c2a4', // (361068-551676)
+                551676, '#2ca25f', // (551676-850786)
+                850786, '#006d2c', // >=(850786-1243163)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
     //2011 Property Value (Value_dw_1)
 
-    //2016 Property Value (Value_dw_2)
+    map2.addLayer({
+        'id': '2011_housingval',
+        'type': 'fill',
+        'source': 'cmhc_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Value_dw_1'], 
+                '#edf8fb', // Colour assigned to any values < first step (so 0-3183)
+                3183, '#b2e2e2', // (3183-422056)
+                422056, '#66c2a4', // (422056-587261)
+                587261, '#2ca25f', // (587261-851317)
+                851317, '#006d2c', // >=(851317-1435459)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2016 Property Value (Total1)
+
+    map2.addLayer({
+        'id': '2016_housingval',
+        'type': 'fill',
+        'source': 'cmhc_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Total1'], 
+                '#edf8fb', // Colour assigned to any values < first step (so 0-4895)
+                4895, '#b2e2e2', // (4895-609025)
+                609025, '#66c2a4', // (609025-799149)
+                799149, '#2ca25f', // (799149-1164596)
+                1164596, '#006d2c', // >=(1164596-2207725)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+    
+});
 
 /*--------------------------------------------------------------------
-//View GeoJSON data on map as interactive layer: Census data
+//Housing Suitability: 2006-2016 tab
+--------------------------------------------------------------------*/
+
+//Step 1: View and classify variable layers (see load CMHC data section)
+
+//Step 2: Add toggle feature for each layer (REDO SO LAYERS START OFF THEN TOGGLE TO TURN ON LIKE LEGEND AND CAN REARRANGE LAYERS)
+
+//Toggle Housing Standard 2006 (starts on- check to turn off)
+document.getElementById('2006_housingst').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2006_housingst',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Housing Standard 2011 
+document.getElementById('2011_housingst').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2011_housingst',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Housing Standard 2016
+document.getElementById('2016_housingst').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2016_housingst',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+// Step 3: Housing Standard legend (with all 3 years) 
+
+//Declare array variables for labels and colours
+const legendlabels_2006 = [
+    '2006:',
+    '0-0.1',
+    '0.1-17.2',
+    '17.2-24.8',
+    '24.8-31.5',
+    '31.5-46.3'
+];
+
+const legendlabels_2011 = [
+    '2011:',
+    '0-0.1',
+    '0.1-13.1',
+    '13.1-20.3',
+    '20.3-27.6',
+    '27.6-45.0'
+];
+
+const legendlabels_2016 = [
+    '2016:',
+    '0-4.9',
+    '4.9-17.3',
+    '17.3-24.5',
+    '24.5-31.8',
+    '31.8-47.3'
+];
+
+const legendcolours = [
+    'rgba(255, 255, 255, 0.8)',
+    '#edf8fb',
+    '#b3cde3',
+    '#8c96c6',
+    '#8856a7',
+    '#810f7c'
+];
+
+//Declare legend variable using legend div tag
+const legend = document.getElementById('legend');
+
+//For each layer create a block to put the colour and label in- 2006
+legendlabels_2006.forEach((label_2006, i) => {
+    const colour = legendcolours[i];
+
+    const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
+    const key = document.createElement('span'); //add a 'key' to the row. A key will be the colour circle
+
+    key.className = 'legend-key'; //the key will take on the shape and style properties defined in css
+    key.style.backgroundColor = colour; // the background color is retreived from teh layers array
+
+    const value = document.createElement('span'); //add a value variable to the 'row' in the legend
+    value.innerHTML = `${label_2006}`; //give the value variable text based on the label
+
+    item.appendChild(key); //add the key (colour cirlce) to the legend row
+    item.appendChild(value); //add the value to the legend row
+
+    legend.appendChild(item); //add row to the legend
+});
+
+//2011 block- colour and label 
+legendlabels_2011.forEach((label_2011, i) => {
+    const colour = legendcolours[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-key'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2011}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legend.appendChild(item); 
+});
+
+//2016 block- colour and label 
+legendlabels_2016.forEach((label_2016, i) => {
+    const colour = legendcolours[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-key'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2016}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legend.appendChild(item); 
+});
+
+//Step 4: Change display of legend based on check box
+let legendcheck = document.getElementById('legendcheck');
+
+legendcheck.addEventListener('click', () => {
+    if (legendcheck.checked) {
+        legendcheck.checked = true;
+        legend.style.display = 'block';
+    }
+    else {
+        legend.style.display = "none";
+        legendcheck.checked = false;
+    }
+});
+
+/*--------------------------------------------------------------------
+//Housing Value: 2006-2016 tab
+--------------------------------------------------------------------*/
+//Step 1: View and classify variable layers (see loading CMHC layer section)
+
+// Step 2: Add toggle feature for each layer (REDO SO LAYERS START OFF THEN TOGGLE TO TURN ON LIKE LEGEND AND CAN REARRANGE LAYERS) (OR HAVE ONE LAYER ON AT A TIME)
+
+//Toggle Housing Standard 2006 (starts on- check to turn off)
+document.getElementById('2006_housingval').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2006_housingval',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Housing Standard 2011 
+document.getElementById('2011_housingval').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2011_housingval',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Housing Standard 2016
+document.getElementById('2016_housingval').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2016_housingval',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+// Step 3: Add Housing Property Value Legend (with all 3 years)
+
+//Declare array variables for labels and colours
+const legendlabels_2006val = [
+    '2006:',
+    '0-2757',
+    '2757-361,068',
+    '361,068-551,676',
+    '551,676-850,786',
+    '850,786-1,243,163'
+];
+
+const legendlabels_2011val = [
+    '2011:',
+    '0-3183',
+    '3183-422,056',
+    '422,056-587,261',
+    '587,261-851,317',
+    '851,317-1,435,459'
+];
+
+const legendlabels_2016val = [
+    '2016:',
+    '0-4895',
+    '4895-609,025',
+    '609,025-799,149',
+    '799,149-1,164,596',
+    '1,164,596-2,207,725'
+];
+
+const legendcoloursval = [
+    'rgba(255, 255, 255, 0.8)',
+    '#edf8fb',
+    '#b2e2e2',
+    '#66c2a4',
+    '#2ca25f',
+    '#006d2c'
+];
+
+//For each layer create a block to put the colour and label in- 2006
+legendlabels_2006val.forEach((label_2006val, i) => {
+    const colour = legendcoloursval[i];
+
+    const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
+    const key = document.createElement('span'); //add a 'key' to the row. A key will be the colour circle
+
+    key.className = 'legend-keyval'; //the key will take on the shape and style properties defined in css
+    key.style.backgroundColor = colour; // the background color is retreived from teh layers array
+
+    const value = document.createElement('span'); //add a value variable to the 'row' in the legend
+    value.innerHTML = `${label_2006val}`; //give the value variable text based on the label
+
+    item.appendChild(key); //add the key (colour cirlce) to the legend row
+    item.appendChild(value); //add the value to the legend row
+
+    legendval.appendChild(item); //add row to the legend
+});
+
+//2011 block- colour and label 
+legendlabels_2011val.forEach((label_2011val, i) => {
+    const colour = legendcoloursval[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-key'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2011val}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendval.appendChild(item); 
+});
+
+//2016 block- colour and label 
+legendlabels_2016val.forEach((label_2016val, i) => {
+    const colour = legendcoloursval[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-key'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2016val}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendval.appendChild(item); 
+});
+
+//Step 4: Toggle display of legend
+
+let legendcheck2 = document.getElementById('legendcheck2');
+
+legendcheck2.addEventListener('click', () => {
+    if (legendcheck2.checked) {
+        legendcheck2.checked = true;
+        legendval.style.display = 'block';
+    }
+    else {
+        legendval.style.display = "none";
+        legendcheck2.checked = false;
+    }
+});
+
+/*--------------------------------------------------------------------
+//Load Census data onto map as GeoJSON
 --------------------------------------------------------------------*/
 
 let censusgeojson;
@@ -141,160 +486,62 @@ map2.on('load', () => {
         data: censusgeojson
     });
     
-    map2.addLayer({
-        'id': 'census_data',
-        'type': 'fill',
-        'source': 'census_data',
-        'paint': {
-          'fill-color': 'blue',
-          'fill-opacity': 0.4,
-          'fill-outline-color': 'blue'
-        }
-    });
+    //TEST: Add census layer entirely onto map
+    // map2.addLayer({
+    //     'id': 'census_data',
+    //     'type': 'fill',
+    //     'source': 'census_data',
+    //     'paint': {
+    //       'fill-color': 'blue',
+    //       'fill-opacity': 0.4,
+    //       'fill-outline-color': 'blue'
+    //     }
+    // });
     
 });
 
-//Add toggle feature for each layer
+/*--------------------------------------------------------------------
+//Income: 2001-2021 tab
+--------------------------------------------------------------------*/
+//Step 1: View and classify variable layers 
 
-//Toggle Housing Standard 2006
-document.getElementById('2006_housingst').addEventListener('change', (e) => {
-    map2.setLayoutProperty(
-        '2006_housingst',
-        'visibility',
-         e.target.checked ? 'visible' : 'none'
-     );
-});
+    //2001 Income 
 
-//Toggle Housing Standard 2011
-document.getElementById('2011_housingst').addEventListener('change', (e) => {
-    map2.setLayoutProperty(
-        '2011_housingst',
-        'visibility',
-         e.target.checked ? 'visible' : 'none'
-     );
-});
+    //2016 Income
 
-//Toggle Housing Standard 2016
-document.getElementById('2016_housingst').addEventListener('change', (e) => {
-    map2.setLayoutProperty(
-        '2016_housingst',
-        'visibility',
-         e.target.checked ? 'visible' : 'none'
-     );
-});
+    //2016 Income
 
-//Change housing layer display based on check box using setLayoutProperty method
-document.getElementById('cmhc_data').addEventListener('change', (e) => {
-    map2.setLayoutProperty(
-        'cmhc_data',
-        'visibility',
-         e.target.checked ? 'visible' : 'none'
-     );
-});
+// Step 2: Add toggle feature for each layer (make smoother to interactive later)
 
-//Change census layer display based on check box using setLayoutProperty method
-    document.getElementById('census_data').addEventListener('change', (e) => {
-        map2.setLayoutProperty(
-            'census_data',
-            'visibility',
-             e.target.checked ? 'visible' : 'none'
-        );
-    });
+// Step 3: Add Housing Property Value Legend (with all 3 years)
+
+//Step 4: Toggle display of legend
 
 //View and classify variable layers
 
-    //2001 Income 
-
-    //2016 Income
-
-    //2016 Income
-
-    //2001 Emplyment
-
-    //2016 Employment
-
-    //2021 Employment
+/*--------------------------------------------------------------------
+//Population: 2001-2021 tab
+--------------------------------------------------------------------*/
+//Step 1: View and classify variable layers 
 
     //2001 Pop
 
     //2016 Pop
 
     //2021 Pop
+
+// Step 2: Add toggle feature for each layer (make smoother to interactive later)
+
+// Step 3: Add Housing Property Value Legend (with all 3 years)
+
+//Step 4: Toggle display of legend
+
+//View and classify variable layers
 
 /*--------------------------------------------------------------------
-//Add dynamic legends for each layer (Week 8 demo 2)
+//Employment: 2001-2021 tab
 --------------------------------------------------------------------*/
-//2006 Housing Standard (Housing_st)
-
-//Declare array variables for labels and colours
-const legendlabels = [
-    '0-0.1',
-    '0.1-17.2',
-    '17.2-24.8',
-    '24.8-31.5',
-    '31.5-46.3'
-];
-
-const legendcolours = [
-    '#edf8fb',
-    '#b3cde3',
-    '#8c96c6',
-    '#8856a7',
-    '#810f7c'
-];
-
-//Declare legend variable using legend div tag
-const legend = document.getElementById('legend');
-
-//For each layer create a block to put the colour and label in
-legendlabels.forEach((label, i) => {
-    const colour = legendcolours[i];
-
-    const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
-    const key = document.createElement('span'); //add a 'key' to the row. A key will be the colour circle
-
-    key.className = 'legend-key'; //the key will take on the shape and style properties defined in css
-    key.style.backgroundColor = colour; // the background color is retreived from teh layers array
-
-    const value = document.createElement('span'); //add a value variable to the 'row' in the legend
-    value.innerHTML = `${label}`; //give the value variable text based on the label
-
-    item.appendChild(key); //add the key (colour cirlce) to the legend row
-    item.appendChild(value); //add the value to the legend row
-
-    legend.appendChild(item); //add row to the legend
-});
-
-//Change display of legend based on check box
-let legendcheck = document.getElementById('legendcheck');
-
-legendcheck.addEventListener('click', () => {
-    if (legendcheck.checked) {
-        legendcheck.checked = true;
-        legend.style.display = 'block';
-    }
-    else {
-        legend.style.display = "none";
-        legendcheck.checked = false;
-    }
-});
-    
-
-    //2011 Housing Standard (Housing__1)
-
-    //2016 Housing Standard (Housing__2)
-
-    //2006 Property Value (Value_dwel)
-
-    //2011 Property Value (Value_dw_1)
-
-    //2016 Property Value (Value_dw_2)
-
-    //2001 Income 
-
-    //2016 Income
-
-    //2016 Income
+//Step 1: View and classify variable layers 
 
     //2001 Emplyment
 
@@ -302,8 +549,9 @@ legendcheck.addEventListener('click', () => {
 
     //2021 Employment
 
-    //2001 Pop
+// Step 2: Add toggle feature for each layer (make smoother to interactive later)
 
-    //2016 Pop
+// Step 3: Add Housing Property Value Legend (with all 3 years)
 
-    //2021 Pop
+//Step 4: Toggle display of legend
+    
