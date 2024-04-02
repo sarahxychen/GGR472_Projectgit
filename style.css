@@ -85,10 +85,20 @@
 /*Styling for timeslider legend*/
 #console {
   position: absolute;
-  width: 300px;
-  margin: 10px;
-  padding: 10px 20px;
-  background-color: white;
+  background-color: #fff;
+  border-radius: 3px;
+  bottom: 0;
+  margin-bottom: 450px;
+  margin-right: 1080px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /*horizontal shadow, vertical shadow, size of shadow, color*/
+  padding: 20px;
+  right: 30px;
+  z-index: 12;
+}
+
+.row {
+  height: 12px;
+  width: 100%;
 }
 
 /*Styling for popups*/
@@ -130,7 +140,7 @@
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   padding: 10px;
   right: 30px;
-  z-index: 1;
+  z-index: 12;
 }
 
 .legend h4 {
