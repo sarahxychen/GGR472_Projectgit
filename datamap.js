@@ -274,12 +274,53 @@ legendcheck.addEventListener('click', () => {
 /*--------------------------------------------------------------------
 //Housing Value: 2006-2016 tab
 --------------------------------------------------------------------*/
+//Step 1: View and classify variable layers 
 
-    //2006 Property Value (Value_dwel)
+     //2006 Property Value (Value_dwel)
+
+    // map2.addLayer({
+    //     'id': '2006_housingst',
+    //     'type': 'fill',
+    //     'source': 'cmhc_data',
+    //     'paint': {
+    //        'fill-color': [
+    //             'step', // STEP expression produces stepped results based on value pairs
+    //             ['get', 'Housing_st'], // GET expression retrieves property value from 'Housing_st' data field
+    //             '#edf8fb', // Colour assigned to any values < first step (so 0-0.1)
+    //             0.1, '#b3cde3', // Colours assigned to values >= each step (0.1-17.2)
+    //             17.2, '#8c96c6', // >=(17.2-24.8)
+    //             24.8, '#8856a7', // >=(24.8-31.5)
+    //             31.5, '#810f7c', // >=((31.5-46.3)
+    //             ],
+    //         'fill-outline-color': 'grey'
+    //     },
+    // });
 
     //2011 Property Value (Value_dw_1)
 
     //2016 Property Value (Value_dw_2)
+
+// Step 2: Toggle map container layers as button
+var coll = document.getElementsByClassName("collapsible2");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content2 = this.nextElementSibling;
+    if (content2.style.maxHeight){
+      content2.style.maxHeight = null;
+    } else {
+      content2.style.maxHeight = content2.scrollHeight + "px";
+    }
+  });
+}
+
+// Step 3: Add toggle feature for each layer (make smoother to interactive later)
+
+// Step 4: Add Housing Property Value Legend (with all 3 years)
+
+//Step 5: Toggle display of legend
 
 /*--------------------------------------------------------------------
 //Load Census data onto map as GeoJSON

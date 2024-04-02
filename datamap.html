@@ -48,7 +48,7 @@
 <div class="container"> <h1>Socioeconomic Data Map</h1></div>
 <div id='datamap' class='container'></div>
 
-<!-- Collapse map container using bootstrap button-->
+<!-- Housing standard: Collapsable button-->
 <button type="button" class="collapsible">Housing Suitability Data</button>
 <div class="content">
     <label><h3>Total Households in <br> Core Housing Need (%)</h3></label>
@@ -70,13 +70,39 @@
      </div> 
 </div>
 
-<!-- Housing standards Legend --> <!-- Conents of legend will be added via JS-->
+<!-- Housing value: Collapsable button-->
+<button type="button" class="collapsible2">Property Value Data</button>
+<div class="content2">
+    <label><h3>Total Property <br> Value ($)</h3></label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2006_housingval" checked>
+        2006
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2011_housingval" checked>
+        2011
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="2016_housingval" checked>
+        2016
+    </div>
+    <div class="form-check">
+         <input class="form-check-input" type="checkbox" value="" id="legendcheck2">
+         Show Legend
+     </div> 
+</div>
+
+<!-- Housing standards Legend --> <!-- Conents of legend will be added via JS--> <!-- FIX LABELLING OF YEARS IN EACH LEGEND TO DIFFERENT FONT IN HTML RATHER THAN AS VARIABLE LABEL IN JS -->
 <div id='legend' class='legend'>
     <h4>Households in Need (%)</h4>
-    <!-- FIX LABELLING OF YEARS IN EACH LEGEND TO DIFFERENT FONT IN HTML RATHER THAN AS VARIABLE LABEL IN JS -->
  </div>
 
-<!-- Housing standard variables map container- to toggle data layers 2006-2016 and legend; WORK TO REARRANGE LAYERS MORE SMOOTHLY -->
+ <!-- Housing Value Legend --> <!-- Conents of legend will be added via JS-->
+<div id='legend2' class='legend'>
+    <h4>Households in Need (%)</h4>
+ </div>
+
+<!-- Housing standard variables map container- OLD -->
    <!-- <div class='map-data-container'>
        <label><h3>Total Households in Core Housing Need (%)</h3></label>
     -->
