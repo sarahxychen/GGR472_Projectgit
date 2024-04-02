@@ -39,16 +39,16 @@ map2.on('load', () => {
         data: cmhcgeojson
     });
     
-    map2.addLayer({
-        'id': 'cmhc_data',
-        'type': 'fill',
-        'source': 'cmhc_data',
-        'paint': {
-          'fill-color': 'grey',
-          'fill-opacity': 0.4,
-          'fill-outline-color': 'blue'
-        }
-    });
+    // map2.addLayer({
+    //     'id': 'cmhc_data',
+    //     'type': 'fill',
+    //     'source': 'cmhc_data',
+    //     'paint': {
+    //       'fill-color': 'grey',
+    //       'fill-opacity': 0.4,
+    //       'fill-outline-color': 'blue'
+    //     }
+    // });
 
 //View and classify variable layers (Lecture 6 to classify ramp colouring)
 
@@ -120,40 +120,6 @@ map2.on('load', () => {
 
     //2016 Property Value (Value_dw_2)
 
-/*--------------------------------------------------------------------
-//View GeoJSON data on map as interactive layer: Census data
---------------------------------------------------------------------*/
-
-let censusgeojson;
-
-// Fetch GeoJSON from URL and store response as JSON
-fetch('https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/CensusData.geojson')
-    .then(response => response.json())
-    .then(response => {
-        console.log(response); //Check response in console
-        censusgeojson = response; // Store geojson as variable using URL from fetch response
-    });
-
-//View and style source data as geojson 
-map2.on('load', () => {
-    map2.addSource('census_data', {
-        type: 'geojson',
-        data: censusgeojson
-    });
-    
-    map2.addLayer({
-        'id': 'census_data',
-        'type': 'fill',
-        'source': 'census_data',
-        'paint': {
-          'fill-color': 'blue',
-          'fill-opacity': 0.4,
-          'fill-outline-color': 'blue'
-        }
-    });
-    
-});
-
 //Add toggle feature for each layer
 
 //Toggle Housing Standard 2006
@@ -183,23 +149,57 @@ document.getElementById('2016_housingst').addEventListener('change', (e) => {
      );
 });
 
-//Change housing layer display based on check box using setLayoutProperty method
-document.getElementById('cmhc_data').addEventListener('change', (e) => {
-    map2.setLayoutProperty(
-        'cmhc_data',
-        'visibility',
-         e.target.checked ? 'visible' : 'none'
-     );
+/*--------------------------------------------------------------------
+//View GeoJSON data on map as interactive layer: Census data
+--------------------------------------------------------------------*/
+
+let censusgeojson;
+
+// Fetch GeoJSON from URL and store response as JSON
+fetch('https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/CensusData.geojson')
+    .then(response => response.json())
+    .then(response => {
+        console.log(response); //Check response in console
+        censusgeojson = response; // Store geojson as variable using URL from fetch response
+    });
+
+//View and style source data as geojson 
+map2.on('load', () => {
+    map2.addSource('census_data', {
+        type: 'geojson',
+        data: censusgeojson
+    });
+    
+    // map2.addLayer({
+    //     'id': 'census_data',
+    //     'type': 'fill',
+    //     'source': 'census_data',
+    //     'paint': {
+    //       'fill-color': 'blue',
+    //       'fill-opacity': 0.4,
+    //       'fill-outline-color': 'blue'
+    //     }
+    // });
+    
 });
 
-//Change census layer display based on check box using setLayoutProperty method
-    document.getElementById('census_data').addEventListener('change', (e) => {
-        map2.setLayoutProperty(
-            'census_data',
-            'visibility',
-             e.target.checked ? 'visible' : 'none'
-        );
-    });
+// //Change housing layer display based on check box using setLayoutProperty method
+// document.getElementById('cmhc_data').addEventListener('change', (e) => {
+//     map2.setLayoutProperty(
+//         'cmhc_data',
+//         'visibility',
+//          e.target.checked ? 'visible' : 'none'
+//      );
+// });
+
+// //Change census layer display based on check box using setLayoutProperty method
+//     document.getElementById('census_data').addEventListener('change', (e) => {
+//         map2.setLayoutProperty(
+//             'census_data',
+//             'visibility',
+//              e.target.checked ? 'visible' : 'none'
+//         );
+//     });
 
 //View and classify variable layers
 
@@ -224,10 +224,11 @@ document.getElementById('cmhc_data').addEventListener('change', (e) => {
 /*--------------------------------------------------------------------
 //Add dynamic legends for each layer (Week 8 demo 2)
 --------------------------------------------------------------------*/
-//2006 Housing Standard (Housing_st)
+// Housing Standard legend (with all 3 years)
 
 //Declare array variables for labels and colours
-const legendlabels = [
+const legendlabels_2006 = [
+    '2006:',
     '0-0.1',
     '0.1-17.2',
     '17.2-24.8',
@@ -235,7 +236,26 @@ const legendlabels = [
     '31.5-46.3'
 ];
 
+const legendlabels_2011 = [
+    '2011:',
+    '0-0.1',
+    '0.1-13.1',
+    '13.1-20.3',
+    '20.3-27.6',
+    '27.6-45.0'
+];
+
+const legendlabels_2016 = [
+    '2016:',
+    '0-4.9',
+    '4.9-17.3',
+    '17.3-24.5',
+    '24.5-31.8',
+    '31.8-47.3'
+];
+
 const legendcolours = [
+    'rgba(255, 255, 255, 0.8)',
     '#edf8fb',
     '#b3cde3',
     '#8c96c6',
@@ -246,8 +266,8 @@ const legendcolours = [
 //Declare legend variable using legend div tag
 const legend = document.getElementById('legend');
 
-//For each layer create a block to put the colour and label in
-legendlabels.forEach((label, i) => {
+//For each layer create a block to put the colour and label in- 2006
+legendlabels_2006.forEach((label_2006, i) => {
     const colour = legendcolours[i];
 
     const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
@@ -257,12 +277,44 @@ legendlabels.forEach((label, i) => {
     key.style.backgroundColor = colour; // the background color is retreived from teh layers array
 
     const value = document.createElement('span'); //add a value variable to the 'row' in the legend
-    value.innerHTML = `${label}`; //give the value variable text based on the label
+    value.innerHTML = `${label_2006}`; //give the value variable text based on the label
 
     item.appendChild(key); //add the key (colour cirlce) to the legend row
     item.appendChild(value); //add the value to the legend row
 
     legend.appendChild(item); //add row to the legend
+});
+
+//2011 block- colour and label 
+legendlabels_2011.forEach((label_2011, i) => {
+    const colour = legendcolours[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-key'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2011}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legend.appendChild(item); 
+});
+
+//2016 block- colour and label 
+legendlabels_2016.forEach((label_2016, i) => {
+    const colour = legendcolours[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-key'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2016}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legend.appendChild(item); 
 });
 
 //Change display of legend based on check box
@@ -279,6 +331,49 @@ legendcheck.addEventListener('click', () => {
     }
 });
     
+
+// //2006 Housing Standard (Housing_st)
+
+
+// //Declare array variables for labels and colours
+// const legendlabels = [
+//     '0-0.1',
+//     '0.1-17.2',
+//     '17.2-24.8',
+//     '24.8-31.5',
+//     '31.5-46.3'
+// ];
+
+// const legendcolours = [
+//     '#edf8fb',
+//     '#b3cde3',
+//     '#8c96c6',
+//     '#8856a7',
+//     '#810f7c'
+// ];
+
+// //Declare legend variable using legend div tag
+// const legend = document.getElementById('legend');
+
+// //For each layer create a block to put the colour and label in
+// legendlabels.forEach((label, i) => {
+//     const colour = legendcolours[i];
+
+//     const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
+//     const key = document.createElement('span'); //add a 'key' to the row. A key will be the colour circle
+
+//     key.className = 'legend-key'; //the key will take on the shape and style properties defined in css
+//     key.style.backgroundColor = colour; // the background color is retreived from teh layers array
+
+//     const value = document.createElement('span'); //add a value variable to the 'row' in the legend
+//     value.innerHTML = `${label}`; //give the value variable text based on the label
+
+//     item.appendChild(key); //add the key (colour cirlce) to the legend row
+//     item.appendChild(value); //add the value to the legend row
+
+//     legend.appendChild(item); //add row to the legend
+// });
+
 
     //2011 Housing Standard (Housing__1)
 
