@@ -98,7 +98,6 @@ map1.on('load', () => {
             'fill-opacity': 0.9,
             'fill-outline-color': 'blue',
         },
-        // filter: ['==', ['number', ['get', 'YearNum']], 2005]
     });
 });
 document.getElementById('slider').addEventListener('input', (event) => {
@@ -108,13 +107,13 @@ document.getElementById('slider').addEventListener('input', (event) => {
     document.getElementById('active-year').innerText = year;
 });
 
-// When a click event occurs on a feature in the states layer,
+// When a click event occurs on a feature in the bia layer,
 // open a popup at the location of the click, with description
 // HTML from the click event's properties.
 map1.on('click', 'biapoly', (e) => {
     new mapboxgl.Popup()
         .setLngLat(e.lngLat)
-        .setHTML(e.features[0].properties.Description)
+        .setHTML(description)
         .addTo(map1);
 });
 
