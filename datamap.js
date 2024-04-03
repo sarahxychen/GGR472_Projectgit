@@ -466,7 +466,7 @@ legendcheck2.addEventListener('click', () => {
 });
 
 /*--------------------------------------------------------------------
-//Load Census data onto map as GeoJSON
+//Load Census data onto map as GeoJSON + classify layer visualizations
 --------------------------------------------------------------------*/
 
 let censusgeojson;
@@ -485,73 +485,609 @@ map2.on('load', () => {
         type: 'geojson',
         data: censusgeojson
     });
-    
-    //TEST: Add census layer entirely onto map
-    // map2.addLayer({
-    //     'id': 'census_data',
-    //     'type': 'fill',
-    //     'source': 'census_data',
-    //     'paint': {
-    //       'fill-color': 'blue',
-    //       'fill-opacity': 0.4,
-    //       'fill-outline-color': 'blue'
-    //     }
-    // });
+
+//Income data classification
+
+    //2001 Income (Inc01)
+
+    map2.addLayer({
+        'id': '2001_inc',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Inc01'], 
+                '#ffffcc', // Colour assigned to any values < first step (so 0-1)
+                1, '#c2e699', // (1-460)
+                461, '#78c679', // (461-715)
+                716, '#31a354', // (716-1345)
+                1346, '#006837', // >=(1346-2555)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2016 Income (Inc16)
+
+    map2.addLayer({
+        'id': '2016_inc',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Inc16'], 
+                '#ffffcc', // Colour assigned to any values < first step (so 0 - 510)
+                511, '#c2e699', // (511-960)
+                961, '#78c679', // (961-1805)
+                1806, '#31a354', // (1806-3595)
+                3596, '#006837', // >=(3596-7410)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2021 Income (Inc21)
+
+    map2.addLayer({
+        'id': '2021_inc',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Inc21'], 
+                '#ffffcc', // Colour assigned to any values < first step (so 0 - 630)
+                631, '#c2e699', // (631-1225)
+                1226, '#78c679', // (1226-2245)
+                2246, '#31a354', // (2246-4640)
+                4641, '#006837', // >=(4641-8930)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+//Population data classification
+
+    //2001 Population (Pop01)
+
+    map2.addLayer({
+        'id': '2001_pop',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Pop01'], 
+                '#ffffd4', //Colour assigned to any values < first step (so 0-216)
+                216, '#fed98e', // (216-535)
+                535, '#fe9929', // (535-828)
+                828, '#d95f0e', // (828-1428)
+                1428, '#993404', // >=(1428-3099)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2016 Population (Pop16)
+
+    map2.addLayer({
+        'id': '2016_pop',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Pop16'], 
+                '#ffffd4', //Colour assigned to any values < first step (so 0-649)
+                649, '#fed98e', // (649-1228)
+                1228, '#fe9929', // (1228-2297)
+                2297, '#d95f0e', // (2297-4631)
+                4631, '#993404', // >=(4631-7939)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2021 Population (Pop21)
+
+    map2.addLayer({
+        'id': '2021_pop',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Pop21'], 
+                '#ffffd4', //Colour assigned to any values < first step (so 0-747)
+                748, '#fed98e', // (748-1438)
+                1439, '#fe9929', // (1439-2662)
+                2663, '#d95f0e', // (2663-5506)
+                5507, '#993404', // >=(5507-9625)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+//Employment data classification
+
+    //2001 Emplyment (Emp01)
+
+    map2.addLayer({
+        'id': '2001_emp',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Emp01'], 
+                '#f1eef6', //Colour assigned to any values < first step (so 0-1)
+                1, '#bdc9e1', // (1-460)
+                461, '#74a9cf', // (461-715)
+                716, '#2b8cbe', // (716-1345)
+                1346, '#045a8d', // >=(1346-2555)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2016 Employment (Emp16)
+
+    map2.addLayer({
+        'id': '2016_emp',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Emp16'], 
+                '#f1eef6', //Colour assigned to any values < first step (so 0-20)
+                21, '#bdc9e1', // (21-47)
+                48, '#74a9cf', // (48-58)
+                59, '#2b8cbe', // (59-68)
+                69, '#045a8d', // >=(69-92)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
+
+    //2021 Employment
+
+    map2.addLayer({
+        'id': '2021_emp',
+        'type': 'fill',
+        'source': 'census_data',
+        'paint': {
+           'fill-color': [
+                'step', 
+                ['get', 'Emp21'], 
+                '#f1eef6', //Colour assigned to any values < first step (so 0-30)
+                31, '#bdc9e1', // (31-46)
+                47, '#74a9cf', // (	47-55)
+                56, '#2b8cbe', // (56-65)
+                66, '#045a8d', // >=(66-85)
+                ],
+            'fill-outline-color': 'grey'
+        },
+    });
     
 });
 
 /*--------------------------------------------------------------------
 //Income: 2001-2021 tab
 --------------------------------------------------------------------*/
-//Step 1: View and classify variable layers 
-
-    //2001 Income 
-
-    //2016 Income
-
-    //2016 Income
+//Step 1: View and classify variable layers (see load census data section)
 
 // Step 2: Add toggle feature for each layer (make smoother to interactive later)
 
-// Step 3: Add Housing Property Value Legend (with all 3 years)
+//Toggle Income 2001 (starts on- check to turn off)
+document.getElementById('2001_inc').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2001_inc',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Income 2016
+document.getElementById('2016_inc').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2016_inc',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Income 2021
+document.getElementById('2021_inc').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2021_inc',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+// Step 3: Add Income Legend (with all 3 years)
+
+//Declare array variables for labels and colours
+const legendlabels_2001inc = [
+    '2001:',
+    '0-1',
+    '1-460',
+    '461-715',
+    '716-1345',
+    '1346-2555',
+];
+
+const legendlabels_2016inc = [
+    '2016:',
+    '0-510',
+    '511-960',
+    '961-1805',
+    '1806-3595',
+    '3596-7410'
+];
+
+const legendlabels_2021inc = [
+    '2021:',
+    '0-630',
+    '631-1225',
+    '2246-4640',
+    '2246-4640',
+    '4641-8930'
+];
+
+const legendcoloursinc = [
+    'rgba(255, 255, 255, 0.8)',
+    '#ffffcc',
+    '#c2e699',
+    '#78c679',
+    '#31a354',
+    '#006837'
+];
+
+//For each layer create a block to put the colour and label in- 2001
+legendlabels_2001inc.forEach((label_2001inc, i) => {
+    const colour = legendcoloursinc[i];
+
+    const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
+    const key = document.createElement('span'); //add a 'key' to the row. A key will be the colour circle
+
+    key.className = 'legend-keyinc'; //the key will take on the shape and style properties defined in css
+    key.style.backgroundColor = colour; // the background color is retreived from teh layers array
+
+    const value = document.createElement('span'); //add a value variable to the 'row' in the legend
+    value.innerHTML = `${label_2001inc}`; //give the value variable text based on the label
+
+    item.appendChild(key); //add the key (colour cirlce) to the legend row
+    item.appendChild(value); //add the value to the legend row
+
+    legendinc.appendChild(item); //add row to the legend
+});
+
+//2016 block- colour and label 
+legendlabels_2016inc.forEach((label_2016inc, i) => {
+    const colour = legendcoloursinc[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-keyinc'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2016inc}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendinc.appendChild(item); 
+});
+
+//2021 block- colour and label 
+legendlabels_2021inc.forEach((label_2021inc, i) => {
+    const colour = legendcoloursinc[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-keyinc'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2021inc}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendinc.appendChild(item); 
+});
 
 //Step 4: Toggle display of legend
 
-//View and classify variable layers
+let legendcheck3 = document.getElementById('legendcheck3');
+
+legendcheck3.addEventListener('click', () => {
+    if (legendcheck3.checked) {
+        legendcheck3.checked = true;
+        legendinc.style.display = 'block';
+    }
+    else {
+        legendinc.style.display = "none";
+        legendcheck3.checked = false;
+    }
+});
+
 
 /*--------------------------------------------------------------------
 //Population: 2001-2021 tab
 --------------------------------------------------------------------*/
-//Step 1: View and classify variable layers 
-
-    //2001 Pop
-
-    //2016 Pop
-
-    //2021 Pop
+//Step 1: View and classify variable layers (see insert Census data section)
 
 // Step 2: Add toggle feature for each layer (make smoother to interactive later)
 
-// Step 3: Add Housing Property Value Legend (with all 3 years)
+//Toggle Pop 2001 (starts on- check to turn off)
+document.getElementById('2001_pop').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2001_pop',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Pop 2016
+document.getElementById('2016_pop').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2016_pop',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Pop 2021
+document.getElementById('2021_pop').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2021_pop',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+// Step 3: Add Population Legend (with all 3 years)
+
+//Declare array variables for labels and colours
+const legendlabels_2001pop = [
+    '2001:',
+    '0-216',
+    '216-535',
+    '535-828',
+    '828-1428',
+    '1428-3099',
+];
+
+const legendlabels_2016pop = [
+    '2016:',
+    '0-649',
+    '649-1228',
+    '1228-2297',
+    '2297-4631',
+    '4631-7939'
+];
+
+const legendlabels_2021pop = [
+    '2021:',
+    '0-747',
+    '748-1438',
+    '1439-2662',
+    '2663-5506',
+    '5507-9625'
+];
+
+const legendcolourspop = [
+    'rgba(255, 255, 255, 0.8)',
+    '#ffffd4',
+    '#fed98e',
+    '#fe9929',
+    '#d95f0e',
+    '#993404'
+];
+
+//For each layer create a block to put the colour and label in- 2001
+legendlabels_2001pop.forEach((label_2001pop, i) => {
+    const colour = legendcolourspop[i];
+
+    const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
+    const key = document.createElement('span'); //add a 'key' to the row. A key will be the colour circle
+
+    key.className = 'legend-keypop'; //the key will take on the shape and style properties defined in css
+    key.style.backgroundColor = colour; // the background color is retreived from teh layers array
+
+    const value = document.createElement('span'); //add a value variable to the 'row' in the legend
+    value.innerHTML = `${label_2001pop}`; //give the value variable text based on the label
+
+    item.appendChild(key); //add the key (colour cirlce) to the legend row
+    item.appendChild(value); //add the value to the legend row
+
+    legendpop.appendChild(item); //add row to the legend
+});
+
+//2016 block- colour and label 
+legendlabels_2016pop.forEach((label_2016pop, i) => {
+    const colour = legendcolourspop[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-keypop'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2016pop}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendpop.appendChild(item); 
+});
+
+//2021 block- colour and label 
+legendlabels_2021pop.forEach((label_2021pop, i) => {
+    const colour = legendcolourspop[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-keypop'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2021pop}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendpop.appendChild(item); 
+});
 
 //Step 4: Toggle display of legend
 
-//View and classify variable layers
+let legendcheck4 = document.getElementById('legendcheck4');
+
+legendcheck4.addEventListener('click', () => {
+    if (legendcheck4.checked) {
+        legendcheck4.checked = true;
+        legendpop.style.display = 'block';
+    }
+    else {
+        legendpop.style.display = "none";
+        legendcheck4.checked = false;
+    }
+});
+
 
 /*--------------------------------------------------------------------
 //Employment: 2001-2021 tab
 --------------------------------------------------------------------*/
-//Step 1: View and classify variable layers 
-
-    //2001 Emplyment
-
-    //2016 Employment
-
-    //2021 Employment
+//Step 1: View and classify variable layers (See insert Census layer section)
 
 // Step 2: Add toggle feature for each layer (make smoother to interactive later)
 
-// Step 3: Add Housing Property Value Legend (with all 3 years)
+//Toggle Employment 2001 (starts on- check to turn off)
+document.getElementById('2001_emp').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2001_emp',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Emp 2016
+document.getElementById('2016_emp').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2016_emp',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+//Toggle Emp 2021
+document.getElementById('2021_emp').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        '2021_emp',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
+
+// Step 3: Add Employment Legend (with all 3 years)
+
+const legendlabels_2001emp = [
+    '2001:',
+    '0-1',
+    '1-460',
+    '461-715',
+    '716-1345',
+    '1346-2555',
+];
+
+const legendlabels_2016emp = [
+    '2016:',
+    '0-20',
+    '21-47',
+    '48-58',
+    '59-68',
+    '69-92'
+];
+
+const legendlabels_2021emp = [
+    '2021:',
+    '0-30',
+    '31-46',
+    '47-55',
+    '56-65',
+    '66-85'
+];
+
+const legendcoloursemp = [
+    'rgba(255, 255, 255, 0.8)',
+    '#f1eef6',
+    '#bdc9e1',
+    '#74a9cf',
+    '#2b8cbe',
+    '#045a8d'
+];
+
+//For each layer create a block to put the colour and label in- 2001
+legendlabels_2001emp.forEach((label_2001emp, i) => {
+    const colour = legendcoloursemp[i];
+
+    const item = document.createElement('div'); //each layer gets a 'row' - this isn't in the legend yet, we do this later
+    const key = document.createElement('span'); //add a 'key' to the row. A key will be the colour circle
+
+    key.className = 'legend-keyemp'; //the key will take on the shape and style properties defined in css
+    key.style.backgroundColor = colour; // the background color is retreived from teh layers array
+
+    const value = document.createElement('span'); //add a value variable to the 'row' in the legend
+    value.innerHTML = `${label_2001emp}`; //give the value variable text based on the label
+
+    item.appendChild(key); //add the key (colour cirlce) to the legend row
+    item.appendChild(value); //add the value to the legend row
+
+    legendemp.appendChild(item); //add row to the legend
+});
+
+//2016 block- colour and label 
+legendlabels_2016emp.forEach((label_2016emp, i) => {
+    const colour = legendcoloursemp[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-keyemp'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2016emp}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendemp.appendChild(item); 
+});
+
+//2021 block- colour and label 
+legendlabels_2021emp.forEach((label_2021emp, i) => {
+    const colour = legendcoloursemp[i];
+    const item = document.createElement('div'); 
+    const key = document.createElement('span'); 
+    key.className = 'legend-keyemp'; 
+    key.style.backgroundColor = colour; 
+
+    const value = document.createElement('span'); 
+    value.innerHTML = `${label_2021emp}`; 
+
+    item.appendChild(key); 
+    item.appendChild(value); 
+    legendemp.appendChild(item); 
+});
 
 //Step 4: Toggle display of legend
-    
+
+let legendcheck5 = document.getElementById('legendcheck5');
+
+legendcheck5.addEventListener('click', () => {
+    if (legendcheck5.checked) {
+        legendcheck5.checked = true;
+        legendemp.style.display = 'block';
+    }
+    else {
+        legendemp.style.display = "none";
+        legendcheck5.checked = false;
+    }
+});

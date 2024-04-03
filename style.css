@@ -180,10 +180,92 @@
   margin-right: 5px; /*position of circle*/
 }
 
+/* Income Legend */
+.legendinc {
+  position: absolute;
+  display: none;
+  background-color: #fff;
+  border-radius: 3px;
+  bottom: 0;
+  margin-bottom: 70px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /*horizontal shadow, vertical shadow, size of shadow, color*/
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  padding: 10px;
+  right: 30px;
+  z-index: 1;
+}
+
+.legendinc h4 {
+  margin: 0 0 10px;
+}
+
+.legend-keyinc {
+  display: inline-block;
+  border-radius: 50%; /*curve border to make a circle*/
+  height: 10px; /*size of circle*/
+  width: 10px;
+  margin-right: 5px; /*position of circle*/
+}
+
+/* Population Legend */
+.legendpop {
+  position: absolute;
+  display: none;
+  background-color: #fff;
+  border-radius: 3px;
+  bottom: 0;
+  margin-bottom: 70px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /*horizontal shadow, vertical shadow, size of shadow, color*/
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  padding: 10px;
+  right: 30px;
+  z-index: 1;
+}
+
+.legendpop h4 {
+  margin: 0 0 10px;
+}
+
+.legend-keypop {
+  display: inline-block;
+  border-radius: 50%; /*curve border to make a circle*/
+  height: 10px; /*size of circle*/
+  width: 10px;
+  margin-right: 5px; /*position of circle*/
+}
+
+/* Employment Legend */
+.legendemp {
+  position: absolute;
+  display: none;
+  background-color: #fff;
+  border-radius: 3px;
+  bottom: 0;
+  margin-bottom: 70px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /*horizontal shadow, vertical shadow, size of shadow, color*/
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  padding: 10px;
+  right: 30px;
+  z-index: 1;
+}
+
+.legendemp h4 {
+  margin: 0 0 10px;
+}
+
+.legend-keyemp {
+  display: inline-block;
+  border-radius: 50%; /*curve border to make a circle*/
+  height: 10px; /*size of circle*/
+  width: 10px;
+  margin-right: 5px; /*position of circle*/
+}
+
 /* Styling and positioning 5 DATA SET LAYER TOGGLE BUTTONS */
 
 /* collapse housing standard map container as button */
 .collapsible {
+  position: relative;
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -200,7 +282,7 @@
   background-color: #ccc;
 }
 
-/* Style the collapsible content. Note: hidden by default */
+/* Style the collapsible content. Note: hidden by default; FIGURE OUT HOW TO POSITION ABOVE MAP CONTAINER */
 .content {
   padding: 0 18px;
   background-color: white;
