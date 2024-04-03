@@ -1091,3 +1091,46 @@ legendcheck5.addEventListener('click', () => {
         legendcheck5.checked = false;
     }
 });
+
+/*--------------------------------------------------------------------
+//Load BIA layer onto map as GeoJSON
+--------------------------------------------------------------------*/
+
+let biageojson;
+
+// Fetch GeoJSON from URL and store response as JSON
+fetch('https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/BIAYearNum.geojson')
+    .then(response => response.json())
+    .then(response => {
+        console.log(response); //Check response in console
+        biageojson = response; // Store geojson as variable using URL from fetch response
+    });
+
+//View and style source data as geojson 
+map2.on('load', () => {
+    map2.addSource('bia', {
+        type: 'geojson',
+        data: biageojson
+    });
+
+    map2.addLayer({
+        'id': 'biapoly',
+        'type': 'fill',
+        'source': 'bia',
+        'paint': {
+            'fill-color': 'red',
+            'fill-opacity': 0.5,
+            'fill-outline-color': 'red',
+        },
+    });
+
+});
+
+//Toggle BIA (starts on- check to turn off)
+document.getElementById('biapoly').addEventListener('change', (e) => {
+    map2.setLayoutProperty(
+        'biapoly',
+        'visibility',
+         e.target.checked ? 'visible' : 'none'
+     );
+});
