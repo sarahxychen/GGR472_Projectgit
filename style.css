@@ -121,9 +121,10 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 80%;
+  height: 85%;
   width: 100%;
   margin-top: 10px;
+  z-index: 1;
 }
 
 /* Housing Suitability Legend */
@@ -165,7 +166,7 @@
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   padding: 10px;
   right: 30px;
-  z-index: 1;
+  z-index: 12;
 }
 
 .legendval h4 {
@@ -192,7 +193,7 @@
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   padding: 10px;
   right: 30px;
-  z-index: 1;
+  z-index: 12;
 }
 
 .legendinc h4 {
@@ -219,7 +220,7 @@
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   padding: 10px;
   right: 30px;
-  z-index: 1;
+  z-index: 12;
 }
 
 .legendpop h4 {
@@ -246,7 +247,7 @@
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   padding: 10px;
   right: 30px;
-  z-index: 1;
+  z-index: 12;
 }
 
 .legendemp h4 {
@@ -270,11 +271,13 @@
   color: #444;
   cursor: pointer;
   padding: 18px;
-  width: 260px;
+  width: 250px;
   border: none;
   text-align: left;
   outline: none;
   font-size: 15px;
+  top: 0;
+  z-index: 100;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
@@ -284,11 +287,14 @@
 
 /* Style the collapsible content. Note: hidden by default; FIGURE OUT HOW TO POSITION ABOVE MAP CONTAINER */
 .content {
+  position: relative;
   padding: 0 18px;
   background-color: white;
   max-height: 0;
+  width: 250px;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
+  z-index: 100;
 }
 
 .collapsible:after {
@@ -297,6 +303,7 @@
   color: white;
   float: right;
   margin-left: 5px;
+  z-index: 15;
 }
 
 .active:after {

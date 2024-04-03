@@ -20,7 +20,7 @@
 
 <body>
 <!-- Navbar theme -->
-<nav class="navbar" style="background-color: #3355f068;">
+<nav class="navbar" style="background-color: #7295cc;">
     <!-- Navbar bootstrap; logo cover -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -33,7 +33,7 @@
              <span class="navbar-toggler-icon"></span>
              </button> 
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
-                    <div class="navbar-nav" style="background-color: #3355f068;"> 
+                    <div class="navbar-nav" style="background-color: #7295cc;"> 
                         <a class="nav-link" aria-current="page" href="index.html" id="defaultOpen">Home</a> 
                         <a class="nav-link" href="timemap.html" >BIA Map</a> 
                         <a class="nav-link" href="datamap.html" >Socioeconomic Data</a>
@@ -161,31 +161,41 @@
      </div> 
 </div>
 
+<!-- BIA Polygon Collapsable button -->
+<button type="button" class="collapsible">BIA's</button>
+<div class="content">
+    <label><h5>BIA Polygons in Toronto</h5></label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="biapoly" checked>
+        Show layer
+    </div>
+</div>
+
 <!-- ADDING IN 5 LEGENDS FOR EACH DATA SET-->
 
 <!-- Housing standards Legend --> <!-- Conents of legend will be added via JS--> <!-- FIX LABELLING OF YEARS IN EACH LEGEND TO DIFFERENT FONT IN HTML RATHER THAN AS VARIABLE LABEL IN JS -->
 <div id='legend' class='legend'>
-    <h4>Households in Need <br> by Neighbourhood (%)</h4>
+    <h6>Households in Need <br> by Neighbourhood (%)</h6>
  </div>
 
  <!-- Housing Value Legend --> <!-- Conents of legend will be added via JS-->
 <div id='legendval' class='legendval'>
-    <h4>Total Property Value <br> by Neighbourhood ($)</h4>
+    <h6>Total Property Value <br> by Neighbourhood ($)</h6>
  </div>
 
 <!-- Income Legend --> <!-- Conents of legend will be added via JS-->
 <div id='legendinc' class='legendinc'>
-    <h4>Income by <br> Dissemination Block ($)</h4>
+    <h6>Income by <br> Dissemination Block ($)</h6>
  </div>
 
 <!-- Population Legend --> <!-- Conents of legend will be added via JS-->
 <div id='legendpop' class='legendpop'>
-    <h4>Population Count by <br> Dissemination Block</h4>
+    <h6>Population Count by <br> Dissemination Block</h6>
  </div>
 
  <!-- Employment Legend --> <!-- Conents of legend will be added via JS-->
 <div id='legendemp' class='legendemp'>
-    <h4>Employment Rate by <br> Dissemination Block (%)</h4>
+    <h6>Employment Rate by <br> Dissemination Block</h6>
  </div>
 
     <script src="datamap.js"></script>
