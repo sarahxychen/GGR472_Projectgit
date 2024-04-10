@@ -66,6 +66,9 @@ map2.on('load', () => {
         'id': '2006_housingst',
         'type': 'fill',
         'source': 'cmhc_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', // STEP expression produces stepped results based on value pairs
@@ -86,6 +89,9 @@ map2.on('load', () => {
         'id': '2011_housingst',
         'type': 'fill',
         'source': 'cmhc_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -106,6 +112,9 @@ map2.on('load', () => {
         'id': '2016_housingst',
         'type': 'fill',
         'source': 'cmhc_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -128,6 +137,9 @@ map2.on('load', () => {
         'id': '2006_housingval',
         'type': 'fill',
         'source': 'cmhc_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -148,6 +160,9 @@ map2.on('load', () => {
         'id': '2011_housingval',
         'type': 'fill',
         'source': 'cmhc_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -168,6 +183,9 @@ map2.on('load', () => {
         'id': '2016_housingval',
         'type': 'fill',
         'source': 'cmhc_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -190,9 +208,9 @@ map2.on('load', () => {
 
 //Step 1: View and classify variable layers (see load CMHC data section)
 
-//Step 2: Add toggle feature for each layer (REDO SO LAYERS START OFF THEN TOGGLE TO TURN ON LIKE LEGEND AND CAN REARRANGE LAYERS)
+//Step 2: Add toggle feature for each layer (starts off- check to turn on)
 
-//Toggle Housing Standard 2006 (starts on- check to turn off)
+//Toggle Housing Standard 2006
 document.getElementById('2006_housingst').addEventListener('change', (e) => {
     map2.setLayoutProperty(
         '2006_housingst',
@@ -331,9 +349,9 @@ legendcheck.addEventListener('click', () => {
 --------------------------------------------------------------------*/
 //Step 1: View and classify variable layers (see loading CMHC layer section)
 
-// Step 2: Add toggle feature for each layer (REDO SO LAYERS START OFF THEN TOGGLE TO TURN ON LIKE LEGEND AND CAN REARRANGE LAYERS) (OR HAVE ONE LAYER ON AT A TIME)
+// Step 2: Add toggle feature for each layer (starts off- check to turn on)
 
-//Toggle Housing Standard 2006 (starts on- check to turn off)
+//Toggle Housing Standard 2006
 document.getElementById('2006_housingval').addEventListener('change', (e) => {
     map2.setLayoutProperty(
         '2006_housingval',
@@ -472,7 +490,7 @@ legendcheck2.addEventListener('click', () => {
 let censusgeojson;
 
 // Fetch GeoJSON from URL and store response as JSON
-fetch('https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/CensusData.geojson')
+fetch('https://raw.githubusercontent.com/sarahxychen/GGR472_Projectgit/main/Data_/CensusData.geojson') 
     .then(response => response.json())
     .then(response => {
         console.log(response); //Check response in console
@@ -494,6 +512,9 @@ map2.on('load', () => {
         'id': '2001_inc',
         'type': 'fill',
         'source': 'census_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -514,6 +535,9 @@ map2.on('load', () => {
         'id': '2016_inc',
         'type': 'fill',
         'source': 'census_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -534,6 +558,9 @@ map2.on('load', () => {
         'id': '2021_inc',
         'type': 'fill',
         'source': 'census_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -556,6 +583,9 @@ map2.on('load', () => {
         'id': '2001_pop',
         'type': 'fill',
         'source': 'census_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -576,6 +606,9 @@ map2.on('load', () => {
         'id': '2016_pop',
         'type': 'fill',
         'source': 'census_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -596,6 +629,9 @@ map2.on('load', () => {
         'id': '2021_pop',
         'type': 'fill',
         'source': 'census_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -618,6 +654,9 @@ map2.on('load', () => {
         'id': '2001_emp',
         'type': 'fill',
         'source': 'census_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -638,6 +677,9 @@ map2.on('load', () => {
         'id': '2016_emp',
         'type': 'fill',
         'source': 'census_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -658,6 +700,9 @@ map2.on('load', () => {
         'id': '2021_emp',
         'type': 'fill',
         'source': 'census_data',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
            'fill-color': [
                 'step', 
@@ -679,9 +724,9 @@ map2.on('load', () => {
 --------------------------------------------------------------------*/
 //Step 1: View and classify variable layers (see load census data section)
 
-// Step 2: Add toggle feature for each layer (make smoother to interactive later)
+// Step 2: Add toggle feature for each layer (starts off- check to turn on)
 
-//Toggle Income 2001 (starts on- check to turn off)
+//Toggle Income 2001
 document.getElementById('2001_inc').addEventListener('change', (e) => {
     map2.setLayoutProperty(
         '2001_inc',
@@ -819,24 +864,34 @@ legendcheck3.addEventListener('click', () => {
 --------------------------------------------------------------------*/
 //Step 1: View and classify variable layers (see insert Census data section)
 
-// Step 2: Add toggle feature for each layer (make smoother to interactive later)
+// Step 2: Add toggle feature for each layer (starts off- check to turn on)
 
-//Toggle Pop 2001 (starts on- check to turn off)
-document.getElementById('2001_pop').addEventListener('change', (e) => {
-    map2.setLayoutProperty(
-        '2001_pop',
-        'visibility',
-         e.target.checked ? 'visible' : 'none'
-     );
+//Toggle Pop 2001 
+let pop01 = document.getElementById('2001_pop');
+
+pop01.addEventListener('click', () => {
+    if (pop01.checked) {
+        map2.setLayoutProperty('2001_pop', 'visibility', 'visible');
+        datamap.pop01 = '';
+    }
+    else {
+        datamap.pop01 = 'active';
+        map2.setLayoutProperty('2001_pop', 'visibility', 'none');
+    }
 });
 
 //Toggle Pop 2016
-document.getElementById('2016_pop').addEventListener('change', (e) => {
-    map2.setLayoutProperty(
-        '2016_pop',
-        'visibility',
-         e.target.checked ? 'visible' : 'none'
-     );
+let pop16 = document.getElementById('2016_pop');
+
+pop16.addEventListener('click', () => {
+    if (pop16.checked) {
+        map2.setLayoutProperty('2016_pop', 'visibility', 'visible');
+        datamap.pop16 = '';
+    }
+    else {
+        datamap.pop16 = 'active';
+        map2.setLayoutProperty('2016_pop', 'visibility', 'none');
+    }
 });
 
 //Toggle Pop 2021
@@ -959,33 +1014,48 @@ legendcheck4.addEventListener('click', () => {
 --------------------------------------------------------------------*/
 //Step 1: View and classify variable layers (See insert Census layer section)
 
-// Step 2: Add toggle feature for each layer (make smoother to interactive later)
+// Step 2: Add toggle feature for each layer (starts off- check to turn on)
 
-//Toggle Employment 2001 (starts on- check to turn off)
-document.getElementById('2001_emp').addEventListener('change', (e) => {
-    map2.setLayoutProperty(
-        '2001_emp',
-        'visibility',
-         e.target.checked ? 'visible' : 'none'
-     );
+//Toggle Employment 2001 
+let emp01 = document.getElementById('2001_emp');
+
+emp01.addEventListener('click', () => {
+    if (emp01.checked) {
+        map2.setLayoutProperty('2001_emp', 'visibility', 'visible');
+        datamap.emp01 = '';
+    }
+    else {
+        datamap.emp01 = 'active';
+        map2.setLayoutProperty('2001_emp', 'visibility', 'none');
+    }
 });
 
 //Toggle Emp 2016
-document.getElementById('2016_emp').addEventListener('change', (e) => {
-    map2.setLayoutProperty(
-        '2016_emp',
-        'visibility',
-         e.target.checked ? 'visible' : 'none'
-     );
+let emp16 = document.getElementById('2016_emp');
+
+emp16.addEventListener('click', () => {
+    if (emp16.checked) {
+        map2.setLayoutProperty('2016_emp', 'visibility', 'visible');
+        datamap.emp16 = '';
+    }
+    else {
+        datamap.emp16 = 'active';
+        map2.setLayoutProperty('2016_emp', 'visibility', 'none');
+    }
 });
 
 //Toggle Emp 2021
-document.getElementById('2021_emp').addEventListener('change', (e) => {
-    map2.setLayoutProperty(
-        '2021_emp',
-        'visibility',
-         e.target.checked ? 'visible' : 'none'
-     );
+let emp21 = document.getElementById('2021_emp');
+
+emp21.addEventListener('click', () => {
+    if (emp21.checked) {
+        map2.setLayoutProperty('2021_emp', 'visibility', 'visible');
+        datamap.emp21 = '';
+    }
+    else {
+        datamap.emp21 = 'active';
+        map2.setLayoutProperty('2021_emp', 'visibility', 'none');
+    }
 });
 
 // Step 3: Add Employment Legend (with all 3 years)
@@ -1134,3 +1204,17 @@ document.getElementById('biapoly').addEventListener('change', (e) => {
          e.target.checked ? 'visible' : 'none'
      );
 });
+// document.getElementById('biapoly').addEventListener('click', () => {
+//     if (biapoly.checked) {
+//         map2.setLayoutProperty('biapoly', 'visibility', 'visible');
+//         datamap.biapoly = '';
+//     }
+//     else {
+//         datamap.biapoly = 'active';
+//         map2.setLayoutProperty('biapoly', 'visibility', 'none');
+//     }
+// });
+
+
+
+

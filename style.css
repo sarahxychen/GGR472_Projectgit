@@ -285,7 +285,7 @@
   background-color: #ccc;
 }
 
-/* Style the collapsible content. Note: hidden by default; FIGURE OUT HOW TO POSITION ABOVE MAP CONTAINER */
+/* Style the collapsible content. Note: hidden by default */
 .content {
   position: relative;
   padding: 0 18px;
