@@ -1,6 +1,6 @@
 # GGR472 Final Project: BIAs in Toronto
-
-
+#
+#
 ## Files 
 
 ### Data_: Our data folder contains the raw data used for our site.
@@ -13,8 +13,8 @@
 ### style.css: Contains the code for styling our site. 
 ### timemap.html: Contains the html code structuring the BIA timeslider page.
 ### timemap.js: Contains the javascript code adding functionality to the BIA timeslider page. 
-
-
+#
+#
 
 ## Site Usage
 
