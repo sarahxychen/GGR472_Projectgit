@@ -30,36 +30,39 @@ map1.on('load', () => {
         },
     });
 });
-        // When a click event occurs on a feature in the places layer, open a popup at the
-        // location of the feature, with description HTML from its properties.
-        map1.on('click', 'biapoly', (e) => {
-            // Copy coordinates array.
-            const coordinates = e.features[0].geometry.coordinates.slice();
-            const description = e.features[0].properties.Descriptio;
 
-            // Ensure that if the map is zoomed out such that multiple
-            // copies of the feature are visible, the popup appears
-            // over the copy being pointed to.
-            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-            }
+//Phased out popup code below
 
-            new mapboxgl.Popup()
-                .setLngLat(coordinates)
-                .setHTML(description)
-                .addTo(map1);
-        });
+// // When a click event occurs on a feature in the places layer, open a popup at the
+// // location of the feature, with description HTML from its properties.
+// map1.on('click', 'biapoly', (e) => {
+//     // Copy coordinates array.
+//     const coordinates = e.features[0].geometry.coordinates.slice();
+//     const description = e.features[0].properties.Descriptio;
 
-        // Change the cursor to a pointer when the mouse is over the places layer.
-        map1.on('mouseenter', 'places', () => {
-            map1.getCanvas().style.cursor = 'pointer';
-        });
+//     // Ensure that if the map is zoomed out such that multiple
+//     // copies of the feature are visible, the popup appears
+//     // over the copy being pointed to.
+//     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+//         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+//     }
 
-        // Change it back to a pointer when it leaves.
-        map1.on('mouseleave', 'places', () => {
-            map1.getCanvas().style.cursor = '';
-        });
-  
+//     new mapboxgl.Popup()
+//         .setLngLat(coordinates)
+//         .setHTML(description)
+//         .addTo(map1);
+// });
+
+// // Change the cursor to a pointer when the mouse is over the places layer.
+// map1.on('mouseenter', 'places', () => {
+//     map1.getCanvas().style.cursor = 'pointer';
+// });
+
+// // Change it back to a pointer when it leaves.
+// map1.on('mouseleave', 'places', () => {
+//     map1.getCanvas().style.cursor = '';
+// });
+
 
 
 // map1.on('click', e => {
@@ -72,12 +75,17 @@ map1.on('load', () => {
 //     }
 // });
 
-document.getElementById('slider').addEventListener('input', (event) => {
-    const year = parseInt(event.target.value);
+//Time slider functionality
+document.getElementById('slider').addEventListener('input', (event) => { //create event listener whent he toggle is moved
+    const year = parseInt(event.target.value); //set the position of the toggle as a constant
     // update the map
-    map1.setFilter('biapoly', ['<=', ['number', ['get', 'YearNum']], year]);
-    document.getElementById('active-year').innerText = year;
+    map1.setFilter('biapoly', ['<=', ['number', ['get', 'YearNum']], year]); //filter for all BIAs established befor or on target year
+    document.getElementById('active-year').innerText = year; // update html text with year constant
 });
+
+
+// More defunct popup code:
+
 
 // When a click event occurs on a feature in the bia layer,
 // open a popup at the location of the click, with description

@@ -1,3 +1,6 @@
+/* All code from this file was migrated to other js files specific to our html pages*/
+/* We left this page to document our process*/
+
 /*--------------------------------------------------------------------
 GGR472 Group Project
 --------------------------------------------------------------------*/

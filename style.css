@@ -68,7 +68,7 @@
 /* END OF NAVIGATION BAR */
 
   
-/* MAP STYLE FOR MAP 1- CHARLOTTE */
+/* MAP STYLE FOR MAP 1*/
 
 /* position map container */
 #timemap {
@@ -99,20 +99,10 @@
   width: 100%;
 }
 
-/*Styling for popups*/
-.mapboxgl-popup {
-  max-width: 400px;
-  font:
-      12px/20px 'Helvetica Neue',
-      Arial,
-      Helvetica,
-      sans-serif;
-    }
-
 /* END OF TIME MAP */
 
 
-/* MAP STYLE FOR MAP 2- SARAH */
+/* MAP STYLE FOR MAP 2 */
 
 /* position map container */
 #datamap {

@@ -1,3 +1,4 @@
+//Searchbar functionality
 function search() {
     // Declare variables
     var input, filter;
